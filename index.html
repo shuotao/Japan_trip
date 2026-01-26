@@ -120,6 +120,13 @@
         const SkiTripApp = () => {
             const [selectedBooking, setSelectedBooking] = useState(null);
 
+            // 待辦購票清單
+            const pendingTickets = [
+                { id: 1, text: "2/6 往木更津 Outlet 巴士 (機場現場買)" },
+                { id: 2, text: "2/11 札幌 ➔ 小樽 快速 Airport u-seat (建議提早)" },
+                { id: 3, text: "2/12 札幌 ➔ 新千歲機場 u-seat (務必提早)" }
+            ];
+
             // 行程數據 - 專注於 2/5 - 2/12
             const itineraryData = [
                 {
@@ -217,6 +224,7 @@
                             type: 'bus',
                             time: '11:00 - 13:45',
                             title: 'Hokkaido Resort Liner (便名 103)',
+                            priority: true,
                             desc: '新千歲機場 ➔ Hirafu Welcome Center',
                             bookingId: '25V02070013',
                             details: `予約番号：25V02070013\n利用日：2026/02/07\n区間：新千歳空港 (11:00発) ⇒ ニセコ (13:45着)\n乗車場所：国内線ターミナル (受付カウンターへ)\n降車場所：ヒラフ第一駐車場 (Welcome Center)\n人数：1名\n支払済：6,000円`
@@ -292,6 +300,7 @@
                             tag: '朋友x3 (Optional)',
                             time: '19:30 - 22:30',
                             title: '小樽雪燈之路 (小樽雪あかりの路)',
+                            priority: true,
                             desc: '抵達札幌後，直接轉乘 JR 前往小樽。',
                             link: 'https://www.bubu-jp.com/archives/32678#xiao_zun_jing_diantian_gou_shan_ye_jing',
                             bookingId: 'Otaru_Plan',
@@ -328,6 +337,7 @@
                             tag: '朋友x3',
                             time: '07:30 - 09:10',
                             title: 'CTS 札幌新千歲 ➔ 東京羽田',
+                            priority: true,
                             desc: '轉機前往松山 (轉機時間 3h30m)。',
                             details: `【往機場交通建議】：\n1. 航班 07:30 起飛，建議 **06:30** 前抵達櫃台。\n2. 推薦搭乘 JR 快速 Airport：\n   - 05:40 札幌發 ➔ 06:18 抵達機場\n   - 06:14 札幌發 ➔ 06:54 抵達機場\n3. 🌟 務必先購票並預約 u-seat (指定席)，清晨搬行李較輕鬆。`,
                             bookingId: null
@@ -345,6 +355,7 @@
                             tag: '我',
                             time: '16:30 - 18:15',
                             title: 'NH070 札幌新千歲 ➔ 東京羽田 (T2)',
+                            priority: true,
                             desc: '座位 17A。抵達後前往新宿。',
                             details: `【往機場交通建議】：\n1. 航班 16:30 起飛，建議 **15:30** 前抵達櫃台。\n2. 推薦搭乘 JR 快速 Airport：\n   - 14:44 札幌發 ➔ 15:24 抵達機場\n   - 15:00 札幌發 ➔ 15:40 抵達機場\n3. 🌟 建議提早預訂 u-seat，下午時段人潮較多。`,
                             bookingId: null
@@ -395,87 +406,106 @@
                         </div>
                     </div>
 
+                    {/* Pending Tickets Checklist */}
+                    <div className="bg-red-50 border-b border-red-100 p-4">
+                        <h3 className="text-red-800 text-xs font-bold uppercase tracking-wider mb-2 flex items-center gap-1">
+                            <IconAlert className="w-3 h-3" />
+                            重要！待辦購票清單 (建議儘速完成)
+                        </h3>
+                        <div className="space-y-2">
+                            {pendingTickets.map(item => (
+                                <div key={item.id} className="flex items-start gap-2 text-sm text-red-700 bg-white/50 p-2 rounded border border-red-50">
+                                    <span className="mt-1">○</span>
+                                    <span>{item.text}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
                     {/* Timeline */}
                     <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50">
-                        {itineraryData.map((day) => (
-                            <div key={day.id} className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden card">
-                                <div className="px-4 py-3 bg-slate-100 border-b border-slate-200 flex justify-between items-center">
-                                    <div className="flex items-center gap-2">
-                                        <div className="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">
-                                            {day.date.split(' ')[0]}
+                        {
+                            itineraryData.map((day) => (
+                                <div key={day.id} className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden card">
+                                    <div className="px-4 py-3 bg-slate-100 border-b border-slate-200 flex justify-between items-center">
+                                        <div className="flex items-center gap-2">
+                                            <div className="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">
+                                                {day.date.split(' ')[0]}
+                                            </div>
+                                            <h2 className="font-bold text-slate-800">{day.date.split(' ')[1]}</h2>
                                         </div>
-                                        <h2 className="font-bold text-slate-800">{day.date.split(' ')[1]}</h2>
+                                        <span className="text-xs font-medium text-slate-500 truncate max-w-[150px]">{day.title}</span>
                                     </div>
-                                    <span className="text-xs font-medium text-slate-500 truncate max-w-[150px]">{day.title}</span>
-                                </div>
 
-                                <div className="divide-y divide-slate-100">
-                                    {day.events.map((event, idx) => (
-                                        <div key={idx} className="p-4 hover:bg-slate-50 transition-colors">
-                                            <div className="flex gap-3">
-                                                <div className="mt-1 shrink-0">{getTypeIcon(event.type)}</div>
-                                                <div className="flex-1 min-w-0">
-                                                    <div className="flex justify-between items-start flex-wrap gap-1">
-                                                        <h3 className="font-bold text-slate-900 leading-tight">
-                                                            {event.title}
-                                                            {event.tag && <span className="ml-2 bg-pink-100 text-pink-700 text-[10px] px-1.5 py-0.5 rounded-full align-middle">{event.tag}</span>}
-                                                            {event.price && <span className="ml-2 bg-yellow-100 text-yellow-700 text-[10px] px-1.5 py-0.5 rounded-full align-middle font-mono">{event.price}</span>}
-                                                        </h3>
-                                                        {event.time && (
-                                                            <span className="text-[10px] font-mono bg-slate-200 px-1.5 py-0.5 rounded text-slate-600 whitespace-nowrap">
-                                                                {event.time}
-                                                            </span>
-                                                        )}
-                                                    </div>
+                                    <div className="divide-y divide-slate-100">
+                                        {day.events.map((event, idx) => (
+                                            <div key={idx} className="p-4 hover:bg-slate-50 transition-colors">
+                                                <div className="flex gap-3">
+                                                    <div className="mt-1 shrink-0">{getTypeIcon(event.type)}</div>
+                                                    <div className="flex-1 min-w-0">
+                                                        <div className="flex justify-between items-start flex-wrap gap-1">
+                                                            <h3 className="font-bold text-slate-900 leading-tight">
+                                                                {event.title}
+                                                                {event.tag && <span className="ml-2 bg-pink-100 text-pink-700 text-[10px] px-1.5 py-0.5 rounded-full align-middle">{event.tag}</span>}
+                                                                {event.price && <span className="ml-2 bg-yellow-100 text-yellow-700 text-[10px] px-1.5 py-0.5 rounded-full align-middle font-mono">{event.price}</span>}
+                                                                {event.priority && <span className="block mt-1 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded w-max font-bold animate-pulse">★ 務必提早預購 (u-seat)</span>}
+                                                            </h3>
+                                                            {event.time && (
+                                                                <span className="text-[10px] font-mono bg-slate-200 px-1.5 py-0.5 rounded text-slate-600 whitespace-nowrap">
+                                                                    {event.time}
+                                                                </span>
+                                                            )}
+                                                        </div>
 
-                                                    {event.jpName && (
-                                                        <p className="text-xs text-slate-500 mt-0.5 font-medium">{event.jpName}</p>
-                                                    )}
-
-                                                    <p className="text-sm text-slate-600 mt-1 leading-relaxed">{event.desc}</p>
-                                                    <div className="flex flex-wrap gap-2 mt-3">
-                                                        {event.bookingId && (
-                                                            <button
-                                                                onClick={() => setSelectedBooking(event)}
-                                                                className="inline-flex items-center gap-1 px-3 py-1.5 bg-blue-50 text-blue-600 text-xs font-bold rounded-lg border border-blue-100 hover:bg-blue-100 active:scale-95 transition-all"
-                                                            >
-                                                                <IconInfo className="w-3.5 h-3.5" />
-                                                                {event.bookingId.includes('_') ? '詳細資訊' : '訂單'}
-                                                            </button>
+                                                        {event.jpName && (
+                                                            <p className="text-xs text-slate-500 mt-0.5 font-medium">{event.jpName}</p>
                                                         )}
 
-                                                        {event.link && (
-                                                            <a
-                                                                href={event.link}
-                                                                target="_blank"
-                                                                rel="noopener noreferrer"
-                                                                className="inline-flex items-center gap-1 px-3 py-1.5 bg-gray-50 text-gray-600 text-xs font-bold rounded-lg border border-gray-200 hover:bg-gray-100 active:scale-95 transition-all"
-                                                            >
-                                                                <IconExternalLink className="w-3.5 h-3.5" />
-                                                                連結
-                                                            </a>
-                                                        )}
+                                                        <p className="text-sm text-slate-600 mt-1 leading-relaxed">{event.desc}</p>
+                                                        <div className="flex flex-wrap gap-2 mt-3">
+                                                            {event.bookingId && (
+                                                                <button
+                                                                    onClick={() => setSelectedBooking(event)}
+                                                                    className="inline-flex items-center gap-1 px-3 py-1.5 bg-blue-50 text-blue-600 text-xs font-bold rounded-lg border border-blue-100 hover:bg-blue-100 active:scale-95 transition-all"
+                                                                >
+                                                                    <IconInfo className="w-3.5 h-3.5" />
+                                                                    {event.bookingId.includes('_') ? '詳細資訊' : '訂單'}
+                                                                </button>
+                                                            )}
 
-                                                        {event.address && (
-                                                            <a
-                                                                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.address)}`}
-                                                                target="_blank"
-                                                                rel="noopener noreferrer"
-                                                                className="inline-flex items-center gap-1 px-3 py-1.5 bg-green-50 text-green-600 text-xs font-bold rounded-lg border border-green-100 hover:bg-green-100 active:scale-95 transition-all"
-                                                            >
-                                                                <IconMapPin className="w-3.5 h-3.5" />
-                                                                地圖
-                                                            </a>
-                                                        )}
+                                                            {event.link && (
+                                                                <a
+                                                                    href={event.link}
+                                                                    target="_blank"
+                                                                    rel="noopener noreferrer"
+                                                                    className="inline-flex items-center gap-1 px-3 py-1.5 bg-gray-50 text-gray-600 text-xs font-bold rounded-lg border border-gray-200 hover:bg-gray-100 active:scale-95 transition-all"
+                                                                >
+                                                                    <IconExternalLink className="w-3.5 h-3.5" />
+                                                                    連結
+                                                                </a>
+                                                            )}
+
+                                                            {event.address && (
+                                                                <a
+                                                                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.address)}`}
+                                                                    target="_blank"
+                                                                    rel="noopener noreferrer"
+                                                                    className="inline-flex items-center gap-1 px-3 py-1.5 bg-green-50 text-green-600 text-xs font-bold rounded-lg border border-green-100 hover:bg-green-100 active:scale-95 transition-all"
+                                                                >
+                                                                    <IconMapPin className="w-3.5 h-3.5" />
+                                                                    地圖
+                                                                </a>
+                                                            )}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    ))}
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
+                            ))
+                        }
+                    </div >
 
                     {/* Booking Modal */}
                     {
