@@ -431,20 +431,48 @@
                         <h3 className="text-yellow-800 text-xs font-bold uppercase tracking-wider mb-2 flex items-center gap-1">
                             💰 費用分攤提醒 (請記得轉帳)
                         </h3>
-                        <div className="space-y-3">
-                            <div className="bg-white/60 p-3 rounded-lg border border-yellow-200 shadow-sm">
-                                <span className="font-bold text-slate-800 text-sm block mb-1 border-b border-yellow-100 pb-1">給 碩濤 (Shuotao):</span>
-                                <ul className="list-disc list-inside text-xs text-slate-600 space-y-1">
-                                    <li><span className="font-bold text-slate-700">APA 飯店 (東京 + 札幌)</span>：另外 3 位請付款。</li>
-                                </ul>
+                        <div className="space-y-4">
+                            {/* To Shuotao */}
+                            <div className="bg-white/80 p-3 rounded-lg border border-yellow-200 shadow-sm">
+                                <span className="font-bold text-slate-900 text-sm block mb-2 border-b border-yellow-100 pb-1">給 碩濤 (Shuotao):</span>
+                                <div>
+                                    <p className="font-bold text-slate-800 text-sm mb-1">
+                                        🧑‍🤝‍🧑 嘉祥、喬玫、瑞文 <span className="text-xs font-normal text-slate-500">(每人)</span>：
+                                        <span className="text-red-600 text-lg ml-1">¥30,000</span>
+                                    </p>
+                                    <ul className="text-xs text-slate-500 pl-2 border-l-2 border-slate-200 space-y-0.5">
+                                        <li>APA 羽田 (總價 ¥68,000 ÷ 4) = ¥17,000</li>
+                                        <li>APA 札幌 (總價 ¥52,000 ÷ 4) = ¥13,000</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div className="bg-white/60 p-3 rounded-lg border border-yellow-200 shadow-sm">
-                                <span className="font-bold text-slate-800 text-sm block mb-1 border-b border-yellow-100 pb-1">給 嘉祥 (Chia Hsiang):</span>
-                                <ul className="list-disc list-inside text-xs text-slate-600 space-y-1">
-                                    <li><span className="font-bold text-slate-700">二世谷住宿</span>：另外 3 位請付款。</li>
-                                    <li><span className="font-bold text-slate-700">回程巴士 (White Liner)</span>：另外 3 位請付款 (每人 ¥5,250)。</li>
-                                    <li><span className="font-bold text-slate-700">去程巴士 (109便)</span>：喬玫、瑞文 請付款 (每人 ¥6,000)。</li>
-                                </ul>
+
+                            {/* To Chia Hsiang */}
+                            <div className="bg-white/80 p-3 rounded-lg border border-yellow-200 shadow-sm">
+                                <span className="font-bold text-slate-900 text-sm block mb-2 border-b border-yellow-100 pb-1">給 嘉祥 (Chia Hsiang):</span>
+
+                                <div className="mb-3">
+                                    <p className="font-bold text-slate-800 text-sm mb-1">
+                                        👤 碩濤 <span className="text-xs font-normal text-slate-500">(我)</span>：
+                                        <span className="text-red-600 text-lg ml-1">¥73,450</span>
+                                    </p>
+                                    <ul className="text-xs text-slate-500 pl-2 border-l-2 border-slate-200 space-y-0.5">
+                                        <li>二世谷住宿 (總價 ¥272,800 ÷ 4) = ¥68,200</li>
+                                        <li>回程巴士 (總價 ¥21,000 ÷ 4) = ¥5,250</li>
+                                    </ul>
+                                </div>
+
+                                <div className="border-t border-slate-100 pt-2">
+                                    <p className="font-bold text-slate-800 text-sm mb-1">
+                                        👫 喬玫、瑞文 <span className="text-xs font-normal text-slate-500">(每人)</span>：
+                                        <span className="text-red-600 text-lg ml-1">¥79,450</span>
+                                    </p>
+                                    <ul className="text-xs text-slate-500 pl-2 border-l-2 border-slate-200 space-y-0.5">
+                                        <li>二世谷住宿 (總價 ¥272,800 ÷ 4) = ¥68,200</li>
+                                        <li>回程巴士 (總價 ¥21,000 ÷ 4) = ¥5,250</li>
+                                        <li>去程巴士 (總價 ¥18,000 ÷ 3) = ¥6,000</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
