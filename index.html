@@ -404,7 +404,7 @@
                     events: [
                         {
                             type: 'flight',
-                            tag: '朋友x3',
+                            tag: '朋友x2',
                             time: '07:30 - 09:10',
                             title: 'CTS 札幌新千歲 ➔ 東京羽田',
                             address: '羽田空港 第1ターミナル',
@@ -414,8 +414,19 @@
                             bookingId: null
                         },
                         {
+                            type: 'bus',
+                            tag: '羅羅',
+                            time: '08:50 - 11:20',
+                            price: '¥6,000',
+                            title: '巴士：Sapporo ➔ Furano (#821)',
+                            address: 'Sapporo Prince Hotel',
+                            desc: '前往富良野 (Kita-no-mine Gondola)。',
+                            bookingId: 'Bus_821',
+                            details: `Course Name: 【# 821】 Sapporo >> Furano\n日期：2026/02/12\n上車地點：08:50 Sapporo Prince Hotel\n下車地點：11:20 Kita-no-mine Gondola\n費用：Adults 6,000 YEN\n代表人：CHIAOMEI LO`
+                        },
+                        {
                             type: 'flight',
-                            tag: '朋友x3',
+                            tag: '朋友x2',
                             time: '12:40 - 15:50',
                             title: 'HND 東京羽田 ➔ 台北松山 (T1)',
                             address: '台北松山機場',
@@ -551,6 +562,28 @@
                                         <li>回程巴士 (總價 ¥21,000 ÷ 4) = ¥5,250</li>
                                         <li>去程巴士 (總價 ¥18,000 ÷ 3) = ¥6,000</li>
                                     </ul>
+                                </div>
+                            </div>
+
+                            {/* Coach Fee */}
+                            <div className="bg-white/80 p-3 rounded-lg border border-yellow-200 shadow-sm">
+                                <span className="font-bold text-slate-900 text-sm block mb-2 border-b border-yellow-100 pb-1">⛷️ 滑雪教練 Josh (3天總計 ¥285,000):</span>
+                                <div className="space-y-2">
+                                    <div className="bg-slate-50 p-2 rounded text-xs space-y-1.5 border border-slate-100">
+                                        <div className="flex justify-between items-center">
+                                            <span className="text-slate-600">TAO <span className="text-[10px] text-slate-400">(20%)</span></span>
+                                            <span className="font-mono font-bold text-slate-800">¥57,000</span>
+                                        </div>
+                                        <div className="flex justify-between items-center">
+                                            <span className="text-slate-600">SHO <span className="text-[10px] text-slate-400">(40%)</span></span>
+                                            <span className="font-mono font-bold text-slate-800">¥114,000</span>
+                                        </div>
+                                        <div className="flex justify-between items-center">
+                                            <span className="text-slate-600">TOTORO <span className="text-[10px] text-slate-400">(40%)</span></span>
+                                            <span className="font-mono font-bold text-slate-800">¥114,000</span>
+                                        </div>
+                                    </div>
+                                    <p className="text-[10px] text-slate-400 text-right">* 依訓練能力比例分攤</p>
                                 </div>
                             </div>
                         </div>
