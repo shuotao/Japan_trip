@@ -113,6 +113,9 @@
         const IconExternalLink = ({ className }) => (
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
         );
+        const IconInstagram = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
+        );
 
         const TohokuTripApp = () => {
             const [selectedBooking, setSelectedBooking] = useState(null);
@@ -207,8 +210,8 @@
                             time: '09:00',
                             title: '湯島天神：文京梅花祭',
                             address: '東京都文京区湯島3-30-1',
-                            desc: '2月上旬起梅花盛開，東京賞梅名所。',
-                            link: 'https://www.yushimatenjin.or.jp/pc/ume/index.htm'
+                            desc: '欣賞早春梅花盛開，祈求學問順利。',
+                            link: 'https://www.yushimatenjin.or.jp/pc/index.htm'
                         },
                         {
                             type: 'camera',
@@ -217,7 +220,8 @@
                             title: '東京鐵塔 & 麻布台 Hills',
                             address: '東京タワー',
                             desc: '經典地標拍照與新景點巡禮。',
-                            details: `推薦拍照點：\n1. 增上寺與東京鐵塔\n2. 麻布台 Hills 展望台 (需預約/買票)\n3. 芝公園\n\n網美角度參考：https://www.instagram.com/reel/DTINqhQD0cg/`
+                            link: 'https://www.instagram.com/reel/DTINqhQD0cg/',
+                            details: `推薦拍照點：\n1. 增上寺與東京鐵塔\n2. 麻布台 Hills 展望台 (需預約/買票)\n3. 芝公園\n\n網美角度參考：點擊連結查看 IG Reel`
                         },
                         {
                             type: 'info',
@@ -225,9 +229,9 @@
                             time: '11:00 (需預約)',
                             title: 'Pokemon Cafe (日本橋)',
                             address: '東京都中央区日本橋2-11-2 (高島屋S.C. 東館 5F)',
-                            desc: '朝聖皮卡丘咖啡廳！旁邊即是 Pokemon Center DX。',
+                            desc: '朝聖皮卡丘咖啡廳！(務必一個月前預約)',
                             link: 'https://www.pokemon-cafe.jp/zh-TW/cafe/',
-                            details: `【預約注意】：\nPokemon Cafe 非常熱門，務必提前一個月上網預約。\n若沒預約到，可改逛旁邊的 Pokemon Center DX (免預約)。\n\nIG參考：https://www.instagram.com/reel/DA8n5Y7yTob/`
+                            details: `【預約與備案】：\nPokemon Cafe 非常熱門請提前預約。\n若客滿，可改逛旁邊的 Pokemon Center DX (免預約)。\n\nIG參考：https://www.instagram.com/reel/DA8n5Y7yTob/`
                         },
                         {
                             type: 'info',
@@ -265,8 +269,8 @@
                             time: '10:00 - 11:30',
                             title: '新幹線 はやぶさ 17号 (東京 ➔ 仙台)',
                             address: 'JR 仙台駅',
-                            desc: '使用 JR PASS 東北地區 5 日券。午餐：仙台牛舌。',
-                            details: `【指定席資訊】：\n東京 10:00 發車 ➔ 仙台 11:30 抵達。\n午餐建議：仙台站內「牛舌通 (牛たん通り)」(利久、喜助、善治郎)。`
+                            desc: '使用 JR PASS 東北地區 5 日券。午餐推薦：利久/喜助。',
+                            details: `【指定席資訊】：\n東京 10:00 發車 ➔ 仙台 11:30 抵達。\n\n【午餐攻略：仙台牛舌通】：\n位於仙台站 3F，名店雲集。\n推薦店家 (皆為 TABELOG 高分名店)：\n1. **伊達の牛たん本舗** (厚切口感極佳)\n2. **牛たん炭焼 利久** (知名度最高，穩定好吃)\n3. **味の牛たん 喜助** (老字號風味)\n4. **牛たん若** (CP值高)\n\n建議：抵達後直接前往 3F 排隊，翻桌率算快。`
                         },
                         {
                             type: 'camera',
@@ -275,7 +279,7 @@
                             title: '定禪寺通 (Jozenji-dori)',
                             address: '定禅寺通',
                             desc: '仙台最美林蔭大道，漫步光之牆(冬季景觀)。',
-                            details: `交通：仙台地下鐵「勾當台公園站」下車即達。\n特色：櫸木林蔭道，有許多雕塑作品。`
+                            details: `交通：仙台地下鐵「勾當台公園站」下車即達。\n特色：櫸木林蔭道，有許多雕塑作品，是仙台市的象徵。冬天會有光之盛典(光のページェント)的燈飾殘影或冬季造景，非常浪漫。`
                         },
                         {
                             type: 'onsen',
@@ -283,8 +287,9 @@
                             time: '14:30',
                             title: '秋保溫泉 (Akiu Onsen)',
                             address: '宮城県仙台市太白区秋保町湯元',
-                            desc: '仙台近郊著名溫泉 (保秋溫泉)。',
-                            details: `交通：仙台站西口巴士總站 8號乘車處，搭乘宮城交通巴士往「秋保温泉」方向 (約 50 分鐘)。\n推薦：佐勘 (Sakan)、瑞鳳 (Zuiho) 日歸溫泉。`
+                            desc: '仙台近郊著名溫泉 (保秋溫泉)，千年古湯。',
+                            link: 'https://akiuonsenkumiai.com/',
+                            details: `【交通】：仙台站西口巴士總站 8號乘車處，搭乘宮城交通巴士往「秋保温泉」方向 (約 50 分鐘)。\n\n【推薦日歸溫泉】：\n1. **傳承千年的宿 佐勘 (Sakan)**：伊達政宗公御用湯，極具歷史感。\n2. **瑞鳳 (Zuiho)**：豪華露天風呂，深受觀光客喜愛。\n\n備註：請記得自備小毛巾。`
                         },
                         {
                             type: 'info',
@@ -292,7 +297,9 @@
                             time: '彈性',
                             title: '仙台市天文台',
                             address: '宮城県仙台市青葉区錦ケ丘9-29-32',
-                            desc: '擁有大型天象儀。需轉乘巴士前往。'
+                            desc: '擁有大型天象儀。門票約 ¥610 (大人)。',
+                            link: 'http://www.sendai-astro.jp/',
+                            details: `費用：展示室 ¥610 / 天象儀 ¥610 / 套票 ¥1000。\n交通：需從仙台站搭乘巴士約 30 分鐘。\n建議：若對天文非常有興趣再前往，一般行程可能較緊湊。`
                         },
                         {
                             type: 'hotel',
@@ -361,8 +368,9 @@
                             tag: 'JR PASS Day 3',
                             time: '11:30 - 12:16',
                             title: '新幹線移動 (大石田 ➔ 福島)',
-                            address: 'JR 福島駅',
-                            desc: '搭乘 つばさ 140 號返回福島。寄放行李。'
+                            address: 'Fukushima Station',
+                            desc: '搭乘 つばさ 140 號返回福島。寄放行李。',
+                            details: `午餐/覓食建議：\n福島站直結商場 **S-PAL 福島 (エスパル福島)** 1F。\n有豐富的熟食、特產與餐廳 (如 DOUTOR, 餃子の照井, 凍天)。\n網址：https://www.s-pal.jp/fukushima/`
                         },
                         {
                             type: 'camera',
@@ -740,10 +748,10 @@
                                                                         href={event.link}
                                                                         target="_blank"
                                                                         rel="noopener noreferrer"
-                                                                        className="inline-flex items-center gap-1 px-3 py-1.5 bg-gray-50 text-gray-600 text-xs font-bold rounded-lg border border-gray-200 hover:bg-gray-100 transition-all"
+                                                                        className={`inline-flex items-center gap-1 px-3 py-1.5 ${event.link.includes('instagram.com') ? 'bg-fuchsia-50 text-fuchsia-600 border-fuchsia-100 hover:bg-fuchsia-100' : 'bg-gray-50 text-gray-600 border-gray-200 hover:bg-gray-100'} text-xs font-bold rounded-lg border transition-all`}
                                                                     >
-                                                                        <IconExternalLink className="w-3.5 h-3.5" />
-                                                                        LINK
+                                                                        {event.link.includes('instagram.com') ? <IconInstagram className="w-3.5 h-3.5" /> : <IconExternalLink className="w-3.5 h-3.5" />}
+                                                                        {event.link.includes('instagram.com') ? 'IG' : 'LINK'}
                                                                     </a>
                                                                 )}
                                                                 {event.address && (
@@ -776,7 +784,7 @@
                             onClick={() => setSelectedBooking(null)}
                         >
                             <div
-                                className="bg-white w-full max-w-md h-[80vh] sm:h-auto sm:rounded-2xl rounded-t-2xl shadow-2xl flex flex-col animate-[slideUp_0.3s_ease-out]"
+                                className="bg-white w-full max-w-md max-h-[90vh] sm:rounded-2xl rounded-t-2xl shadow-2xl flex flex-col animate-[slideUp_0.3s_ease-out]"
                                 onClick={e => e.stopPropagation()}
                             >
                                 <div className="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50 rounded-t-2xl">
