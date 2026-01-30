@@ -116,6 +116,9 @@
         const IconInstagram = ({ className }) => (
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
         );
+        const IconAlert = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" /><path d="M12 9v4" /><path d="M12 17h.01" /></svg>
+        );
 
         const TohokuTripApp = () => {
             const [selectedBooking, setSelectedBooking] = useState(null);
@@ -573,6 +576,34 @@
                             <IconWallet className="w-5 h-5" />
                             <span>查看家族旅行費用清單 (3人結清總覽)</span>
                         </a>
+
+                        <div className="bg-red-50 p-4 rounded-xl border border-red-200 space-y-3">
+                            <h3 className="text-sm font-bold text-red-600 flex items-center gap-2">
+                                <IconAlert className="w-4 h-4" />
+                                挽肉と米 渋谷 - 予約ミッション (2/14分)
+                            </h3>
+                            <div className="space-y-2 text-xs text-red-800">
+                                <div className="flex justify-between items-start">
+                                    <span className="font-bold">1. Advance Priority (有料):</span>
+                                    <div className="text-right font-mono font-bold text-red-600">
+                                        2/1 00:00 (JST)<br />1/31 23:00 (TW)
+                                    </div>
+                                </div>
+                                <div className="flex justify-between items-start">
+                                    <span className="font-bold">2. WEB記帳 (無料):</span>
+                                    <div className="text-right font-mono text-red-500">
+                                        2/7 09:00 (JST)<br />2/7 08:00 (TW)
+                                    </div>
+                                </div>
+                                <a
+                                    href="https://www.tablecheck.com/shops/hikinikutokome-shibuya/reserve"
+                                    target="_blank"
+                                    className="block w-full text-center py-2 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition-all mt-2"
+                                >
+                                    渋谷店 予約予約リンク (TableCheck)
+                                </a>
+                            </div>
+                        </div>
 
                         <button
                             onClick={() => setSelectedBooking({
