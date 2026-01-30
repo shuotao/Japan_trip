@@ -110,6 +110,9 @@
         const IconCamera = ({ className }) => (
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" /><circle cx="12" cy="13" r="3" /></svg>
         );
+        const IconExternalLink = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
+        );
 
         const TohokuTripApp = () => {
             const [selectedBooking, setSelectedBooking] = useState(null);
@@ -177,7 +180,7 @@
                             title: 'CI108 台北桃園 ➔ 東京成田 (T2)',
                             address: '成田国際空港 第2ターミナル',
                             desc: '家人抵達東京。',
-                            details: `【入境後交通】：\n1. 成田機場 T2 搭乘「京成 Access 特急」 (往羽田空港或西馬込方向)。\n2. 於「東日本橋站」或「馬喰横山站」下車 (直結)。\n⏱️ 車程約 70 分鐘。`
+                            details: `【入境後交通】：\n1. 成田機場 T2 入境後，先去 JR 東日本中心領「櫻花 Suica」。\n2. 搭乘「京成 Access 特急」 (往羽田空港或西馬込方向)。\n3. 於「東日本橋站」或「馬喰横山站」下車 (直結)。\n⏱️ 車程約 70 分鐘。`
                         },
                         {
                             type: 'hotel',
@@ -200,29 +203,48 @@
                     events: [
                         {
                             type: 'camera',
-                            tag: '賞梅',
+                            tag: '梅花祭',
                             time: '09:00',
                             title: '湯島天神：文京梅花祭',
                             address: '東京都文京区湯島3-30-1',
-                            desc: '欣賞早春梅花盛開，祈求學問順利。'
+                            desc: '2月上旬起梅花盛開，東京賞梅名所。',
+                            link: 'https://www.yushimatenjin.or.jp/pc/ume/index.htm'
+                        },
+                        {
+                            type: 'camera',
+                            tag: 'Option',
+                            time: '彈性',
+                            title: '東京鐵塔 & 麻布台 Hills',
+                            address: '東京タワー',
+                            desc: '經典地標拍照與新景點巡禮。',
+                            details: `推薦拍照點：\n1. 增上寺與東京鐵塔\n2. 麻布台 Hills 展望台 (需預約/買票)\n3. 芝公園\n\n網美角度參考：https://www.instagram.com/reel/DTINqhQD0cg/`
                         },
                         {
                             type: 'info',
                             tag: '寶可夢',
-                            time: '11:00',
-                            title: '日本橋 Pokemon Center DX',
-                            address: '東京都中央区日本橋2-11-2 (高島屋S.C. 5F)',
-                            desc: '與巨大的卡比獸標誌拍照，並購買限定商品。',
-                            details: `附近美食推薦：壽喜燒 今半 (今半) 或 各種日本橋老店。`
+                            time: '11:00 (需預約)',
+                            title: 'Pokemon Cafe (日本橋)',
+                            address: '東京都中央区日本橋2-11-2 (高島屋S.C. 東館 5F)',
+                            desc: '朝聖皮卡丘咖啡廳！旁邊即是 Pokemon Center DX。',
+                            link: 'https://www.pokemon-cafe.jp/zh-TW/cafe/',
+                            details: `【預約注意】：\nPokemon Cafe 非常熱門，務必提前一個月上網預約。\n若沒預約到，可改逛旁邊的 Pokemon Center DX (免預約)。\n\nIG參考：https://www.instagram.com/reel/DA8n5Y7yTob/`
                         },
                         {
                             type: 'info',
-                            tag: '人氣景點',
+                            tag: 'Option',
+                            time: '彈性',
+                            title: 'Sony Park / Takanawa Gateway',
+                            address: 'Ginza Sony Park',
+                            desc: '銀座 Sony Park 或 高輪 Gateway 車站周邊散策。',
+                            details: `Takanawa Gateway 是隈研吾設計的新車站，建築迷必訪。`
+                        },
+                        {
+                            type: 'info',
+                            tag: '展覽',
                             time: '14:00',
-                            title: '麻布台 Hills & TeamLab',
+                            title: 'TeamLab Borderless (麻布台)',
                             address: '麻布台ヒルズ 森JPタワー',
-                            desc: '參觀東京新地標，並前往 TeamLab Borderless (需預約)。',
-                            details: `晚餐推薦：銀座/有樂町區域。天婦羅 横田 或 蕎麥麵 山本。`
+                            desc: '數位藝術展 (需事先購票)。'
                         },
                         {
                             type: 'hotel',
@@ -235,7 +257,7 @@
                 {
                     id: 'day10',
                     date: '2/15 (日)',
-                    title: '出發東北：前進仙台',
+                    title: '出發東北：仙台名湯',
                     events: [
                         {
                             type: 'train',
@@ -243,16 +265,34 @@
                             time: '10:00 - 11:30',
                             title: '新幹線 はやぶさ 17号 (東京 ➔ 仙台)',
                             address: 'JR 仙台駅',
-                            desc: '使用 JR PASS 東北地區 5 日券。',
-                            details: `【指定席資訊】：\n東京 10:00 發車 ➔ 仙台 11:30 抵達。\n午餐建議：仙台站內「牛舌通」享用厚切牛舌。`
+                            desc: '使用 JR PASS 東北地區 5 日券。午餐：仙台牛舌。',
+                            details: `【指定席資訊】：\n東京 10:00 發車 ➔ 仙台 11:30 抵達。\n午餐建議：仙台站內「牛舌通 (牛たん通り)」(利久、喜助、善治郎)。`
                         },
                         {
                             type: 'camera',
-                            tag: '景點',
-                            time: '下午',
-                            title: '仙台市區散步',
+                            tag: '散策',
+                            time: '13:00',
+                            title: '定禪寺通 (Jozenji-dori)',
                             address: '定禅寺通',
-                            desc: '定禪寺通林蔭道、青葉通、哈比那名掛丁商店街。'
+                            desc: '仙台最美林蔭大道，漫步光之牆(冬季景觀)。',
+                            details: `交通：仙台地下鐵「勾當台公園站」下車即達。\n特色：櫸木林蔭道，有許多雕塑作品。`
+                        },
+                        {
+                            type: 'onsen',
+                            tag: '名湯',
+                            time: '14:30',
+                            title: '秋保溫泉 (Akiu Onsen)',
+                            address: '宮城県仙台市太白区秋保町湯元',
+                            desc: '仙台近郊著名溫泉 (保秋溫泉)。',
+                            details: `交通：仙台站西口巴士總站 8號乘車處，搭乘宮城交通巴士往「秋保温泉」方向 (約 50 分鐘)。\n推薦：佐勘 (Sakan)、瑞鳳 (Zuiho) 日歸溫泉。`
+                        },
+                        {
+                            type: 'info',
+                            tag: 'Option',
+                            time: '彈性',
+                            title: '仙台市天文台',
+                            address: '宮城県仙台市青葉区錦ケ丘9-29-32',
+                            desc: '擁有大型天象儀。需轉乘巴士前往。'
                         },
                         {
                             type: 'hotel',
@@ -286,9 +326,8 @@
                             tag: '接駁',
                             time: '13:30',
                             title: '藤屋旅館接駁巴士 (去程)',
-                            address: '山形県尾花沢市大字銀山新畑443',
-                            desc: '於**大石田站內待合所**等待。司機會進來接人服務。',
-                            details: `【接駁資訊】：\n1. 集合地點：大石田站內待合所 (室內候車室)。\n2. 司機會拿牌子或進來待合所內尋找江先生。\n3. 接駁車程約 30 分鐘。`
+                            address: 'JR 大石田駅',
+                            desc: '於**大石田站內待合所**等待。司機會進來接人。',
                         },
                         {
                             type: 'hotel',
@@ -300,14 +339,14 @@
                             address: '山形県尾花沢市銀山新畑443',
                             phone: '0237-28-2141',
                             bookingId: 'c519fa63c75596390c68',
-                            details: `【預約詳情】：\n預約編號：c519fa63c75596390c68\n房型：八室の宿 客室 [定員3] (Bタイプ･和室)\n金額：**¥138,000 (税込)**\n支付方式：**現地払い (現場支付)**\n\n【注意事項】：\n1. 辦理入住時請出示預約確認郵件。\n2. 全館由知名建築師隈研吾設計，空間極具特色。\n3. 餐飲：包含精緻懷石夕食與朝食。`
+                            details: `【預約詳情】：\n房型：八室の宿 客室 [定員3] (Bタイプ･和室)\n金額：**¥138,000 (税込)**\n支付方式：**現地払い (現場支付)**\n\n【注意事項】：\n1. 建築大師隈研吾設計。\n2. 晚餐享用精緻懷石料理。\n3. 晚上可穿著浴衣漫步溫泉街，欣賞煤氣燈雪景。`
                         }
                     ]
                 },
                 {
                     id: 'day12',
                     date: '2/17 (二)',
-                    title: '福島探險：吉利蛋公園',
+                    title: '福島漫遊：藝術與美食',
                     events: [
                         {
                             type: 'bus',
@@ -315,7 +354,7 @@
                             time: '10:30',
                             title: '藤屋旅館接駁巴士 (回程)',
                             address: 'JR 大石田駅',
-                            desc: '退房後搭乘旅館接駁車返回大石田站。'
+                            desc: '返回大石田站。'
                         },
                         {
                             type: 'train',
@@ -323,16 +362,54 @@
                             time: '11:30 - 12:16',
                             title: '新幹線移動 (大石田 ➔ 福島)',
                             address: 'JR 福島駅',
-                            desc: '搭乘 つばさ 140 號返回福島。中午抵達福島站，寄放行李。'
+                            desc: '搭乘 つばさ 140 號返回福島。寄放行李。'
+                        },
+                        {
+                            type: 'camera',
+                            tag: '藝術',
+                            time: '13:30',
+                            title: 'Lito 葉雕藝術博物館',
+                            address: 'リト・リーフアートミュージアム福島',
+                            desc: '欣賞精緻的葉雕藝術 (Leaf Art)。',
+                            link: 'https://lito-leafart.com/',
+                            details: `交通方式：\n1. 福島站搭乘「福島交通飯坂線」往飯坂温泉方向。\n2. 於「花水坂駅」下車，由車站步行1分鐘即達。\n地址：福島市飯坂町銀杏1-13`
                         },
                         {
                             type: 'camera',
                             tag: '必拍',
-                            time: '下午',
+                            time: '15:30',
                             title: '吉利蛋公園 (Chansey Park)',
-                            address: '郡山市開成山公園',
-                            desc: '福島應援寶可夢：吉利蛋。主題遊戲場地，超適合拍照！',
-                            details: `交通：搭乘 JR 往 郡山站，轉乘公車或計程車。`
+                            address: '郡山市開成1丁目5 (開成山公園内)',
+                            desc: '與吉利蛋遊樂設施合影。',
+                            details: `交通：JR 郡山站前搭乘9號巴士，至「郡山市役所」下車。\n福島應援寶可夢。`
+                        },
+                        {
+                            type: 'info',
+                            tag: 'Option',
+                            time: '較遠',
+                            title: '神奇農場 Wonder Farm',
+                            address: '福島県いわき市四倉町中島広町１',
+                            desc: '番茄主題公園 (採果需預約)。距離福島市較遠 (約1.5小時)。',
+                            link: 'http://www.wonder-farm.co.jp/'
+                        },
+                        {
+                            type: 'info',
+                            tag: '晚餐',
+                            time: '18:30',
+                            title: '牛豊 (Gyutoy) 福島站前店',
+                            address: '福島県福島市栄町6-4 (Power City Pivot 內)',
+                            desc: '大啖福島代表性「福島牛」燒肉。',
+                            link: 'https://www.gyutoy.jp/',
+                            details: `JA 全農福島直營，品質有保證。位於福島站附近。`
+                        },
+                        {
+                            type: 'onsne',
+                            tag: '名湯',
+                            time: 'Option',
+                            title: '穴原溫泉 吉川屋',
+                            address: '福島県福島市飯坂町湯野字新湯6',
+                            desc: '奧飯坂名湯，皇室曾下榻的著名溫泉旅館。',
+                            link: 'https://www.yosikawaya.com/'
                         },
                         {
                             type: 'hotel',
@@ -343,23 +420,59 @@
                             address: '〒960-8031 福島県福島市太田町11-2',
                             phone: '024-536-4111',
                             bookingId: '260113005097',
-                            details: `預約編號：260113005097 & 260113005145\n交通：福島站西口直結。\n晚餐推薦：牛豐 (福島牛專賣店)。`
+                            details: `預約編號：260113005097 & 260113005145\n交通：福島站西口直結。`
                         }
                     ]
                 },
                 {
                     id: 'day13',
                     date: '2/18 (三)',
-                    title: '江戶風情：會津若松與大內宿',
+                    title: '會津若松：雪祭與歷史',
                     events: [
                         {
+                            type: 'train',
+                            tag: 'JR PASS',
+                            time: '08:00',
+                            title: '前往會津若松',
+                            address: 'JR 会津若松駅',
+                            desc: '搭乘 JR 磐越西線前往會津若松 (約 1 小時 15 分)。'
+                        },
+                        {
+                            type: 'camera',
+                            tag: '經典',
+                            time: '10:00',
+                            title: '鶴城 (會津若松城)',
+                            address: '福島県会津若松市追手町1-1',
+                            desc: '冬季雪化妝的鶴城，絕美景色。',
+                            link: 'https://www.tsurugajo.com/tsurugajo/'
+                        },
+                        {
+                            type: 'info',
+                            tag: '酒造',
+                            time: '11:30',
+                            title: '末廣酒造 嘉永藏',
+                            address: '福島県会津若松市日新町12-38',
+                            desc: '百年老酒造，可參觀與試飲。',
+                            link: 'https://www.sake-suehiro.jp/',
+                            details: `日本酒迷必訪，感受大正浪漫氛圍。`
+                        },
+                        {
                             type: 'bus',
-                            tag: '一日遊',
-                            time: '全日',
-                            title: '會津若松 & 大內宿 (雪之宿)',
+                            tag: '絕景',
+                            time: '下午',
+                            title: '大內宿 (雪之宿)',
                             address: '大内宿',
-                            desc: '搭乘觀光巴士或火車前往。景點：大內宿、塔之岪、會津若松鶴城。',
-                            details: `必吃美食：高遠蕎麥麵 (用大蔥當筷子吃)。`
+                            desc: '日本三大茅葺聚落。必吃：大蔥蕎麥麵 (三澤屋)。',
+                            details: `【大內宿雪祭資訊】：\n日期通常為 2月第2個週末 (2026年約為 2/14-15)。\n今日 (2/18) 造訪雖無祭典，但仍可欣賞厚雪覆蓋的夢幻雪村景色。\n交通：會津若松站搭乘「猿遊號」巴士。`
+                        },
+                        {
+                            type: 'camera',
+                            tag: '鐵道',
+                            time: 'Option',
+                            title: '只見線 (只見川第一橋梁)',
+                            address: '道の駅 尾瀬街道みしま宿',
+                            desc: '世界最浪漫鐵道絕景。需由「會津宮下站」轉乘巴士。',
+                            details: `【交通注意】：\n路程較遠。若要前往，建議搭乘始發電車：\n1. 會津若松 ➔ 會津宮下 (約 1.5 小時)。\n2. 轉乘巴士至「道の駅 尾瀬街道みしま宿」。\n3. 步行至展望台俯瞰橋梁。\n⚠️ 班次極少，需精確規劃時間。`
                         },
                         {
                             type: 'hotel',
@@ -621,6 +734,17 @@
                                                                         <IconInfo className="w-3.5 h-3.5" />
                                                                         {event.bookingId && !event.bookingId.includes('_') ? 'ORDER' : 'INFO'}
                                                                     </button>
+                                                                )}
+                                                                {event.link && (
+                                                                    <a
+                                                                        href={event.link}
+                                                                        target="_blank"
+                                                                        rel="noopener noreferrer"
+                                                                        className="inline-flex items-center gap-1 px-3 py-1.5 bg-gray-50 text-gray-600 text-xs font-bold rounded-lg border border-gray-200 hover:bg-gray-100 transition-all"
+                                                                    >
+                                                                        <IconExternalLink className="w-3.5 h-3.5" />
+                                                                        LINK
+                                                                    </a>
                                                                 )}
                                                                 {event.address && (
                                                                     <a
