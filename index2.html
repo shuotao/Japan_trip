@@ -136,752 +136,753 @@
             };
 
             // 行程數據 - 專注於 2/12 - 2/19 (含 2/6 行程)
-            {
-                id: 'day7',
+            const itineraryData = [
+                {
+                    id: 'day7',
                     date: '2/12 (四)',
-                        title: '滑雪結束：返回東京',
-                            events: [
-                                {
-                                    type: 'flight',
-                                    tag: '碩濤',
-                                    time: '16:30 - 18:15',
-                                    title: 'NH070 札幌新千歲 ➔ 東京羽田 (T2)',
-                                    address: '羽田空港 第2ターミナル',
-                                    desc: '座位 17A。抵達後前往新宿住宿。',
-                                    details: `【往機場交通建議】：\n1. 航班 16:30 起飛，建議 15:30 前抵達櫃台。\n2. 推薦搭乘：14:44 札幌發 ➔ 15:24 抵達機場。\n3. 下午時段人多，務必提早預約 u-seat 指定席。`
-                                },
-                                {
-                                    type: 'hotel',
-                                    tag: '碩濤',
-                                    time: 'Check-in: 19:30',
-                                    price: '¥12,100',
-                                    title: 'APA Hotel〈東新宿駅前〉',
-                                    jpName: 'アパホテル〈東新宿駅前〉',
-                                    address: '〒160-0021 東京都新宿区歌舞伎町2-3-24',
-                                    phone: '03-5287-4111',
-                                    bookingId: '251016008088',
-                                    details: `預約編號：251016008088\n房型：1人房\n交通：都營大江戶線/副都心線「東新宿站」B2出口。`
-                                }
-                            ]
-            },
-            {
-                id: 'day8',
+                    title: '滑雪結束：返回東京',
+                    events: [
+                        {
+                            type: 'flight',
+                            tag: '碩濤',
+                            time: '16:30 - 18:15',
+                            title: 'NH070 札幌新千歲 ➔ 東京羽田 (T2)',
+                            address: '羽田空港 第2ターミナル',
+                            desc: '座位 17A。抵達後前往新宿住宿。',
+                            details: `【往機場交通建議】：\n1. 航班 16:30 起飛，建議 15:30 前抵達櫃台。\n2. 推薦搭乘：14:44 札幌發 ➔ 15:24 抵達機場。\n3. 下午時段人多，務必提早預約 u-seat 指定席。`
+                        },
+                        {
+                            type: 'hotel',
+                            tag: '碩濤',
+                            time: 'Check-in: 19:30',
+                            price: '¥12,100',
+                            title: 'APA Hotel〈東新宿駅前〉',
+                            jpName: 'アパホテル〈東新宿駅前〉',
+                            address: '〒160-0021 東京都新宿区歌舞伎町2-3-24',
+                            phone: '03-5287-4111',
+                            bookingId: '251016008088',
+                            details: `預約編號：251016008088\n房型：1人房\n交通：都營大江戶線/副都心線「東新宿站」B2出口。`
+                        }
+                    ]
+                },
+                {
+                    id: 'day8',
                     date: '2/13 (五)',
-                        title: '家人抵達：東京會合',
-                            events: [
-                                {
-                                    type: 'info',
-                                    tag: '碩濤',
-                                    time: '12:00 - 14:00',
-                                    title: '移動與優先 Check-in',
-                                    desc: '中午從東新宿離開，前往馬喰横山。抵達後先辦理入住並領取房卡。',
-                                    address: '〒103-0003 東京都中央区日本橋横山町5-6',
-                                    details: `【本日安排】：\n1. 12:00 從 APA 東新宿辦理退房。\n2. 搭乘都營新宿線前往「馬喰横山站」。\n3. 14:00 抵達新飯店並直接辦理 Check-in (領取房卡)。\n4. 休息或於周邊逛逛，等待家人 18:30 抵達成田。`
-                                },
-                                {
-                                    type: 'flight',
-                                    tag: '家族',
-                                    time: '14:25 - 18:30',
-                                    title: 'CI108 台北桃園 ➔ 東京成田 (T2)',
-                                    address: '成田国際空港 第2ターミナル',
-                                    desc: '家人抵達東京。',
-                                    details: `【入境後交通】：\n1. 成田機場 T2 入境後，先去 JR 東日本中心領「櫻花 Suica」。\n2. 搭乘「京成 Access 特急」 (往羽田空港或西馬込方向)。\n3. 於「東日本橋站」或「馬喰横山站」下車 (直結)。\n⏱️ 車程約 70 分鐘。`
-                                },
-                                {
-                                    type: 'hotel',
-                                    tag: '家族',
-                                    time: 'Check-in: 14:00 (預辦)',
-                                    price: '¥80,113 (總計)',
-                                    title: 'APA Hotel〈日本橋 馬喰横山駅前〉',
-                                    jpName: 'アパホテル〈日本橋 馬喰横山駅前〉',
-                                    address: '〒103-0003 東京都中央区日本橋横山町5-6',
-                                    phone: '03-5645-1311',
-                                    bookingId: '260114016570',
-                                    details: `預約編號：260114016570\n房型：3人1室 (2晚)\n交通：都營淺草線「東日本橋站」/新宿線「馬喰横山站」地上1分鐘。`
-                                }
-                            ]
-            },
-            {
-                id: 'day9',
+                    title: '家人抵達：東京會合',
+                    events: [
+                        {
+                            type: 'info',
+                            tag: '碩濤',
+                            time: '12:00 - 14:00',
+                            title: '移動與優先 Check-in',
+                            desc: '中午從東新宿離開，前往馬喰横山。抵達後先辦理入住並領取房卡。',
+                            address: '〒103-0003 東京都中央区日本橋横山町5-6',
+                            details: `【本日安排】：\n1. 12:00 從 APA 東新宿辦理退房。\n2. 搭乘都營新宿線前往「馬喰横山站」。\n3. 14:00 抵達新飯店並直接辦理 Check-in (領取房卡)。\n4. 休息或於周邊逛逛，等待家人 18:30 抵達成田。`
+                        },
+                        {
+                            type: 'flight',
+                            tag: '家族',
+                            time: '14:25 - 18:30',
+                            title: 'CI108 台北桃園 ➔ 東京成田 (T2)',
+                            address: '成田国際空港 第2ターミナル',
+                            desc: '家人抵達東京。',
+                            details: `【入境後交通】：\n1. 成田機場 T2 入境後，先去 JR 東日本中心領「櫻花 Suica」。\n2. 搭乘「京成 Access 特急」 (往羽田空港或西馬込方向)。\n3. 於「東日本橋站」或「馬喰横山站」下車 (直結)。\n⏱️ 車程約 70 分鐘。`
+                        },
+                        {
+                            type: 'hotel',
+                            tag: '家族',
+                            time: 'Check-in: 14:00 (預辦)',
+                            price: '¥80,113 (總計)',
+                            title: 'APA Hotel〈日本橋 馬喰横山駅前〉',
+                            jpName: 'アパホテル〈日本橋 馬喰横山駅前〉',
+                            address: '〒103-0003 東京都中央区日本橋横山町5-6',
+                            phone: '03-5645-1311',
+                            bookingId: '260114016570',
+                            details: `預約編號：260114016570\n房型：3人1室 (2晚)\n交通：都營淺草線「東日本橋站」/新宿線「馬喰横山站」地上1分鐘。`
+                        }
+                    ]
+                },
+                {
+                    id: 'day9',
                     date: '2/14 (六)',
-                        title: '情人節：東京深度漫遊',
-                            events: [
-                                {
-                                    type: 'camera',
-                                    tag: '梅花祭',
-                                    time: '09:00',
-                                    title: '湯島天神：文京梅花祭',
-                                    address: '東京都文京区湯島3-30-1',
-                                    desc: '欣賞早春梅花盛開，祈求學問順利。',
-                                    link: 'https://www.yushimatenjin.or.jp/pc/index.htm'
-                                },
-                                {
-                                    type: 'camera',
-                                    tag: 'Option',
-                                    time: '彈性',
-                                    title: '東京鐵塔 & 麻布台 Hills',
-                                    address: '東京タワー',
-                                    desc: '經典地標拍照與新景點巡禮。',
-                                    link: 'https://www.instagram.com/reel/DTINqhQD0cg/',
-                                    details: `推薦拍照點：\n1. 增上寺與東京鐵塔\n2. 麻布台 Hills 展望台 (需預約/買票)\n3. 芝公園\n\n網美角度參考：點擊連結查看 IG Reel`
-                                },
-                                {
-                                    type: 'info',
-                                    tag: '寶可夢',
-                                    time: '11:00 (需預約)',
-                                    title: 'Pokemon Cafe (日本橋)',
-                                    address: '東京都中央区日本橋2-11-2 (高島屋S.C. 東館 5F)',
-                                    desc: '朝聖皮卡丘咖啡廳！(務必一個月前預約)',
-                                    link: 'https://www.pokemon-cafe.jp/zh-TW/cafe/',
-                                    details: `【預約與備案】：\nPokemon Cafe 非常熱門請提前預約。\n若客滿，可改逛旁邊的 Pokemon Center DX (免預約)。\n\nIG參考：https://www.instagram.com/reel/DA8n5Y7yTob/`
-                                },
-                                {
-                                    type: 'info',
-                                    tag: 'Option',
-                                    time: '彈性',
-                                    title: 'Sony Park / Takanawa Gateway',
-                                    address: 'Ginza Sony Park',
-                                    desc: '銀座 Sony Park 或 高輪 Gateway 車站周邊散策。',
-                                    details: `Takanawa Gateway 是隈研吾設計的新車站，建築迷必訪。`
-                                },
-                                {
-                                    type: 'info',
-                                    tag: '展覽',
-                                    time: '14:00',
-                                    title: 'TeamLab Borderless (麻布台)',
-                                    address: '麻布台ヒルズ 森JPタワー',
-                                    desc: '數位藝術展 (需事先購票)。'
-                                },
-                                {
-                                    type: 'hotel',
-                                    tag: '續住',
-                                    title: 'APA Hotel〈日本橋 馬喰横山駅前〉',
-                                    bookingId: '260114016570'
-                                }
-                            ]
-            },
-            {
-                id: 'day10',
+                    title: '情人節：東京深度漫遊',
+                    events: [
+                        {
+                            type: 'camera',
+                            tag: '梅花祭',
+                            time: '09:00',
+                            title: '湯島天神：文京梅花祭',
+                            address: '東京都文京区湯島3-30-1',
+                            desc: '欣賞早春梅花盛開，祈求學問順利。',
+                            link: 'https://www.yushimatenjin.or.jp/pc/index.htm'
+                        },
+                        {
+                            type: 'camera',
+                            tag: 'Option',
+                            time: '彈性',
+                            title: '東京鐵塔 & 麻布台 Hills',
+                            address: '東京タワー',
+                            desc: '經典地標拍照與新景點巡禮。',
+                            link: 'https://www.instagram.com/reel/DTINqhQD0cg/',
+                            details: `推薦拍照點：\n1. 增上寺與東京鐵塔\n2. 麻布台 Hills 展望台 (需預約/買票)\n3. 芝公園\n\n網美角度參考：點擊連結查看 IG Reel`
+                        },
+                        {
+                            type: 'info',
+                            tag: '寶可夢',
+                            time: '11:00 (需預約)',
+                            title: 'Pokemon Cafe (日本橋)',
+                            address: '東京都中央区日本橋2-11-2 (高島屋S.C. 東館 5F)',
+                            desc: '朝聖皮卡丘咖啡廳！(務必一個月前預約)',
+                            link: 'https://www.pokemon-cafe.jp/zh-TW/cafe/',
+                            details: `【預約與備案】：\nPokemon Cafe 非常熱門請提前預約。\n若客滿，可改逛旁邊的 Pokemon Center DX (免預約)。\n\nIG參考：https://www.instagram.com/reel/DA8n5Y7yTob/`
+                        },
+                        {
+                            type: 'info',
+                            tag: 'Option',
+                            time: '彈性',
+                            title: 'Sony Park / Takanawa Gateway',
+                            address: 'Ginza Sony Park',
+                            desc: '銀座 Sony Park 或 高輪 Gateway 車站周邊散策。',
+                            details: `Takanawa Gateway 是隈研吾設計的新車站，建築迷必訪。`
+                        },
+                        {
+                            type: 'info',
+                            tag: '展覽',
+                            time: '14:00',
+                            title: 'TeamLab Borderless (麻布台)',
+                            address: '麻布台ヒルズ 森JPタワー',
+                            desc: '數位藝術展 (需事先購票)。'
+                        },
+                        {
+                            type: 'hotel',
+                            tag: '續住',
+                            title: 'APA Hotel〈日本橋 馬喰横山駅前〉',
+                            bookingId: '260114016570'
+                        }
+                    ]
+                },
+                {
+                    id: 'day10',
                     date: '2/15 (日)',
-                        title: '出發東北：仙台名湯',
-                            events: [
-                                {
-                                    type: 'train',
-                                    tag: 'JR PASS Day 1',
-                                    time: '10:00 - 11:30',
-                                    title: '新幹線 はやぶさ 17号 (東京 ➔ 仙台)',
-                                    address: 'JR 仙台駅',
-                                    desc: '使用 JR PASS 東北地區 5 日券。午餐推薦：利久/喜助。',
-                                    details: `【指定席資訊】：\n東京 10:00 發車 ➔ 仙台 11:30 抵達。\n\n【午餐攻略：仙台牛舌通】：\n位於仙台站 3F，名店雲集。\n推薦店家 (皆為 TABELOG 高分名店)：\n1. **伊達の牛たん本舗** (厚切口感極佳)\n2. **牛たん炭焼 利久** (知名度最高，穩定好吃)\n3. **味の牛たん 喜助** (老字號風味)\n4. **牛たん若** (CP值高)\n\n建議：抵達後直接前往 3F 排隊，翻桌率算快。`
-                                },
-                                {
-                                    type: 'camera',
-                                    tag: '散策',
-                                    time: '13:00',
-                                    title: '定禪寺通 (Jozenji-dori)',
-                                    address: '定禅寺通',
-                                    desc: '仙台最美林蔭大道，漫步光之牆(冬季景觀)。',
-                                    details: `交通：仙台地下鐵「勾當台公園站」下車即達。\n特色：櫸木林蔭道，有許多雕塑作品，是仙台市的象徵。冬天會有光之盛典(光のページェント)的燈飾殘影或冬季造景，非常浪漫。`
-                                },
-                                {
-                                    type: 'onsen',
-                                    tag: '名湯',
-                                    time: '14:30',
-                                    title: '秋保溫泉 (Akiu Onsen)',
-                                    address: '宮城県仙台市太白区秋保町湯元',
-                                    desc: '仙台近郊著名溫泉 (保秋溫泉)，千年古湯。',
-                                    link: 'https://akiuonsenkumiai.com/',
-                                    details: `【交通】：仙台站西口巴士總站 8號乘車處，搭乘宮城交通巴士往「秋保温泉」方向 (約 50 分鐘)。\n\n【推薦日歸溫泉】：\n1. **傳承千年的宿 佐勘 (Sakan)**：伊達政宗公御用湯，極具歷史感。\n2. **瑞鳳 (Zuiho)**：豪華露天風呂，深受觀光客喜愛。\n\n備註：請記得自備小毛巾。`
-                                },
-                                {
-                                    type: 'info',
-                                    tag: 'Option',
-                                    time: '彈性',
-                                    title: '仙台市天文台',
-                                    address: '宮城県仙台市青葉区錦ケ丘9-29-32',
-                                    desc: '擁有大型天象儀。門票約 ¥610 (大人)。',
-                                    link: 'http://www.sendai-astro.jp/',
-                                    details: `費用：展示室 ¥610 / 天象儀 ¥610 / 套票 ¥1000。\n交通：需從仙台站搭乘巴士約 30 分鐘。\n建議：若對天文非常有興趣再前往，一般行程可能較緊湊。`
-                                },
-                                {
-                                    type: 'hotel',
-                                    tag: '仙台',
-                                    time: 'Check-in: 15:00',
-                                    title: 'APA Hotel〈仙台駅五橋〉',
-                                    jpName: 'アパホテル〈仙台駅五橋〉',
-                                    address: '〒984-0022 宮城県仙台市若林区五橋3-1-1',
-                                    phone: '022-266-3111',
-                                    bookingId: '260113004109',
-                                    details: `預約編號：260113004109\n房型：3人連通房 (Connecting Room)。\n交通：仙台地下鐵南北線「五橋站」北2出口步行2分鐘。`
-                                }
-                            ]
-            },
-            {
-                id: 'day11',
+                    title: '出發東北：仙台名湯',
+                    events: [
+                        {
+                            type: 'train',
+                            tag: 'JR PASS Day 1',
+                            time: '10:00 - 11:30',
+                            title: '新幹線 はやぶさ 17号 (東京 ➔ 仙台)',
+                            address: 'JR 仙台駅',
+                            desc: '使用 JR PASS 東北地區 5 日券。午餐推薦：利久/喜助。',
+                            details: `【指定席資訊】：\n東京 10:00 發車 ➔ 仙台 11:30 抵達。\n\n【午餐攻略：仙台牛舌通】：\n位於仙台站 3F，名店雲集。\n推薦店家 (皆為 TABELOG 高分名店)：\n1. **伊達の牛たん本舗** (厚切口感極佳)\n2. **牛たん炭焼 利久** (知名度最高，穩定好吃)\n3. **味の牛たん 喜助** (老字號風味)\n4. **牛たん若** (CP值高)\n\n建議：抵達後直接前往 3F 排隊，翻桌率算快。`
+                        },
+                        {
+                            type: 'camera',
+                            tag: '散策',
+                            time: '13:00',
+                            title: '定禪寺通 (Jozenji-dori)',
+                            address: '定禅寺通',
+                            desc: '仙台最美林蔭大道，漫步光之牆(冬季景觀)。',
+                            details: `交通：仙台地下鐵「勾當台公園站」下車即達。\n特色：櫸木林蔭道，有許多雕塑作品，是仙台市的象徵。冬天會有光之盛典(光のページェント)的燈飾殘影或冬季造景，非常浪漫。`
+                        },
+                        {
+                            type: 'onsen',
+                            tag: '名湯',
+                            time: '14:30',
+                            title: '秋保溫泉 (Akiu Onsen)',
+                            address: '宮城県仙台市太白区秋保町湯元',
+                            desc: '仙台近郊著名溫泉 (保秋溫泉)，千年古湯。',
+                            link: 'https://akiuonsenkumiai.com/',
+                            details: `【交通】：仙台站西口巴士總站 8號乘車處，搭乘宮城交通巴士往「秋保温泉」方向 (約 50 分鐘)。\n\n【推薦日歸溫泉】：\n1. **傳承千年的宿 佐勘 (Sakan)**：伊達政宗公御用湯，極具歷史感。\n2. **瑞鳳 (Zuiho)**：豪華露天風呂，深受觀光客喜愛。\n\n備註：請記得自備小毛巾。`
+                        },
+                        {
+                            type: 'info',
+                            tag: 'Option',
+                            time: '彈性',
+                            title: '仙台市天文台',
+                            address: '宮城県仙台市青葉区錦ケ丘9-29-32',
+                            desc: '擁有大型天象儀。門票約 ¥610 (大人)。',
+                            link: 'http://www.sendai-astro.jp/',
+                            details: `費用：展示室 ¥610 / 天象儀 ¥610 / 套票 ¥1000。\n交通：需從仙台站搭乘巴士約 30 分鐘。\n建議：若對天文非常有興趣再前往，一般行程可能較緊湊。`
+                        },
+                        {
+                            type: 'hotel',
+                            tag: '仙台',
+                            time: 'Check-in: 15:00',
+                            title: 'APA Hotel〈仙台駅五橋〉',
+                            jpName: 'アパホテル〈仙台駅五橋〉',
+                            address: '〒984-0022 宮城県仙台市若林区五橋3-1-1',
+                            phone: '022-266-3111',
+                            bookingId: '260113004109',
+                            details: `預約編號：260113004109\n房型：3人連通房 (Connecting Room)。\n交通：仙台地下鐵南北線「五橋站」北2出口步行2分鐘。`
+                        }
+                    ]
+                },
+                {
+                    id: 'day11',
                     date: '2/16 (一)',
-                        title: '重頭戲：銀山溫泉',
-                            events: [
-                                {
-                                    type: 'train',
-                                    tag: 'JR PASS Day 2',
-                                    time: '10:44 - 12:55',
-                                    title: '新幹線移動 (仙台 ➔ 福島 ➔ 大石田)',
-                                    address: 'JR 大石田駅',
-                                    desc: '轉乘行程：10:44 山形新幹線 ➔ 12:12 轉乘 Tsubasa 號 ➔ 12:55 抵達。',
-                                    details: `【轉乘計畫】：\n1. 10:44 仙台 (Yamabiko 134) ➔ 11:03 福島。\n2. 12:12 福島 (Tsubasa 133) ➔ 12:55 大石田。\n⚠️ 福島站內有時間吃點小東西 or 逛逛。`
-                                },
-                                {
-                                    type: 'bus',
-                                    tag: '接駁',
-                                    time: '13:30',
-                                    title: '藤屋旅館接駁巴士 (去程)',
-                                    address: 'JR 大石田駅',
-                                    desc: '於**大石田站內待合所**等待。司機會進來接人。',
-                                },
-                                {
-                                    type: 'hotel',
-                                    tag: '溫泉宿',
-                                    time: 'Check-in: 14:30',
-                                    price: '¥138,000',
-                                    title: '銀山温泉 八室の宿 藤屋 (Fujiya)',
-                                    jpName: '銀山温泉 八室の宿 藤屋',
-                                    address: '山形県尾花沢市銀山新畑443',
-                                    phone: '0237-28-2141',
-                                    bookingId: 'c519fa63c75596390c68',
-                                    details: `【預約詳情】：\n房型：八室の宿 客室 [定員3] (Bタイプ･和室)\n金額：**¥138,000 (税込)**\n支付方式：**現地払い (現場支付)**\n\n【注意事項】：\n1. 建築大師隈研吾設計。\n2. 晚餐享用精緻懷石料理。\n3. 晚上可穿著浴衣漫步溫泉街，欣賞煤氣燈雪景。`
-                                }
-                            ]
-            },
-            {
-                id: 'day12',
+                    title: '重頭戲：銀山溫泉',
+                    events: [
+                        {
+                            type: 'train',
+                            tag: 'JR PASS Day 2',
+                            time: '10:44 - 12:55',
+                            title: '新幹線移動 (仙台 ➔ 福島 ➔ 大石田)',
+                            address: 'JR 大石田駅',
+                            desc: '轉乘行程：10:44 山形新幹線 ➔ 12:12 轉乘 Tsubasa 號 ➔ 12:55 抵達。',
+                            details: `【轉乘計畫】：\n1. 10:44 仙台 (Yamabiko 134) ➔ 11:03 福島。\n2. 12:12 福島 (Tsubasa 133) ➔ 12:55 大石田。\n⚠️ 福島站內有時間吃點小東西 or 逛逛。`
+                        },
+                        {
+                            type: 'bus',
+                            tag: '接駁',
+                            time: '13:30',
+                            title: '藤屋旅館接駁巴士 (去程)',
+                            address: 'JR 大石田駅',
+                            desc: '於**大石田站內待合所**等待。司機會進來接人。',
+                        },
+                        {
+                            type: 'hotel',
+                            tag: '溫泉宿',
+                            time: 'Check-in: 14:30',
+                            price: '¥138,000',
+                            title: '銀山温泉 八室の宿 藤屋 (Fujiya)',
+                            jpName: '銀山温泉 八室の宿 藤屋',
+                            address: '山形県尾花沢市銀山新畑443',
+                            phone: '0237-28-2141',
+                            bookingId: 'c519fa63c75596390c68',
+                            details: `【預約詳情】：\n房型：八室の宿 客室 [定員3] (Bタイプ･和室)\n金額：**¥138,000 (税込)**\n支付方式：**現地払い (現場支付)**\n\n【注意事項】：\n1. 建築大師隈研吾設計。\n2. 晚餐享用精緻懷石料理。\n3. 晚上可穿著浴衣漫步溫泉街，欣賞煤氣燈雪景。`
+                        }
+                    ]
+                },
+                {
+                    id: 'day12',
                     date: '2/17 (二)',
-                        title: '福島漫遊：藝術與美食',
-                            events: [
-                                {
-                                    type: 'bus',
-                                    tag: '接駁',
-                                    time: '10:30',
-                                    title: '藤屋旅館接駁巴士 (回程)',
-                                    address: 'JR 大石田駅',
-                                    desc: '返回大石田站。'
-                                },
-                                {
-                                    type: 'train',
-                                    tag: 'JR PASS Day 3',
-                                    time: '11:30 - 12:16',
-                                    title: '新幹線移動 (大石田 ➔ 福島)',
-                                    address: 'Fukushima Station',
-                                    desc: '搭乘 つばさ 140 號返回福島。寄放行李。',
-                                    details: `午餐/覓食建議：\n福島站直結商場 **S-PAL 福島 (エスパル福島)** 1F。\n有豐富的熟食、特產與餐廳 (如 DOUTOR, 餃子の照井, 凍天)。\n網址：https://www.s-pal.jp/fukushima/`
-                                },
-                                {
-                                    type: 'camera',
-                                    tag: '藝術',
-                                    time: '13:30',
-                                    title: 'Lito 葉雕藝術博物館',
-                                    address: 'リト・リーフアートミュージアム福島',
-                                    desc: '欣賞精緻的葉雕藝術 (Leaf Art)。',
-                                    link: 'https://lito-leafart.com/',
-                                    details: `交通方式：\n1. 福島站搭乘「福島交通飯坂線」往飯坂温泉方向。\n2. 於「花水坂駅」下車，由車站步行1分鐘即達。\n地址：福島市飯坂町銀杏1-13`
-                                },
-                                {
-                                    type: 'camera',
-                                    tag: '必拍',
-                                    time: '15:30',
-                                    title: '吉利蛋公園 (Chansey Park)',
-                                    address: '郡山市開成1丁目5 (開成山公園内)',
-                                    desc: '與吉利蛋遊樂設施合影。',
-                                    details: `交通：JR 郡山站前搭乘9號巴士，至「郡山市役所」下車。\n福島應援寶可夢。`
-                                },
-                                {
-                                    type: 'info',
-                                    tag: 'Option',
-                                    time: '較遠',
-                                    title: '神奇農場 Wonder Farm',
-                                    address: '福島県いわき市四倉町中島広町１',
-                                    desc: '番茄主題公園 (採果需預約)。距離福島市較遠 (約1.5小時)。',
-                                    link: 'http://www.wonder-farm.co.jp/'
-                                },
-                                {
-                                    type: 'info',
-                                    tag: '晚餐',
-                                    time: '18:30',
-                                    title: '牛豊 (Gyutoy) 福島站前店',
-                                    address: '福島県福島市栄町6-4 (Power City Pivot 內)',
-                                    desc: '大啖福島代表性「福島牛」燒肉。',
-                                    link: 'https://www.gyutoy.jp/',
-                                    details: `JA 全農福島直營，品質有保證。位於福島站附近。`
-                                },
-                                {
-                                    type: 'onsne',
-                                    tag: '名湯',
-                                    time: 'Option',
-                                    title: '穴原溫泉 吉川屋',
-                                    address: '福島県福島市飯坂町湯野字新湯6',
-                                    desc: '奧飯坂名湯，皇室曾下榻的著名溫泉旅館。',
-                                    link: 'https://www.yosikawaya.com/'
-                                },
-                                {
-                                    type: 'hotel',
-                                    tag: '福島',
-                                    time: 'Check-in: 16:00',
-                                    title: 'APA Hotel〈福島駅前〉',
-                                    jpName: 'アパホテル〈福島駅前〉',
-                                    address: '〒960-8031 福島県福島市太田町11-2',
-                                    phone: '024-536-4111',
-                                    bookingId: '260113005097',
-                                    details: `預約編號：260113005097 & 260113005145\n交通：福島站西口直結。`
-                                }
-                            ]
-            },
-            {
-                id: 'day13',
+                    title: '福島漫遊：藝術與美食',
+                    events: [
+                        {
+                            type: 'bus',
+                            tag: '接駁',
+                            time: '10:30',
+                            title: '藤屋旅館接駁巴士 (回程)',
+                            address: 'JR 大石田駅',
+                            desc: '返回大石田站。'
+                        },
+                        {
+                            type: 'train',
+                            tag: 'JR PASS Day 3',
+                            time: '11:30 - 12:16',
+                            title: '新幹線移動 (大石田 ➔ 福島)',
+                            address: 'Fukushima Station',
+                            desc: '搭乘 つばさ 140 號返回福島。寄放行李。',
+                            details: `午餐/覓食建議：\n福島站直結商場 **S-PAL 福島 (エスパル福島)** 1F。\n有豐富的熟食、特產與餐廳 (如 DOUTOR, 餃子の照井, 凍天)。\n網址：https://www.s-pal.jp/fukushima/`
+                        },
+                        {
+                            type: 'camera',
+                            tag: '藝術',
+                            time: '13:30',
+                            title: 'Lito 葉雕藝術博物館',
+                            address: 'リト・リーフアートミュージアム福島',
+                            desc: '欣賞精緻的葉雕藝術 (Leaf Art)。',
+                            link: 'https://lito-leafart.com/',
+                            details: `交通方式：\n1. 福島站搭乘「福島交通飯坂線」往飯坂温泉方向。\n2. 於「花水坂駅」下車，由車站步行1分鐘即達。\n地址：福島市飯坂町銀杏1-13`
+                        },
+                        {
+                            type: 'camera',
+                            tag: '必拍',
+                            time: '15:30',
+                            title: '吉利蛋公園 (Chansey Park)',
+                            address: '郡山市開成1丁目5 (開成山公園内)',
+                            desc: '與吉利蛋遊樂設施合影。',
+                            details: `交通：JR 郡山站前搭乘9號巴士，至「郡山市役所」下車。\n福島應援寶可夢。`
+                        },
+                        {
+                            type: 'info',
+                            tag: 'Option',
+                            time: '較遠',
+                            title: '神奇農場 Wonder Farm',
+                            address: '福島県いわき市四倉町中島広町１',
+                            desc: '番茄主題公園 (採果需預約)。距離福島市較遠 (約1.5小時)。',
+                            link: 'http://www.wonder-farm.co.jp/'
+                        },
+                        {
+                            type: 'info',
+                            tag: '晚餐',
+                            time: '18:30',
+                            title: '牛豊 (Gyutoy) 福島站前店',
+                            address: '福島県福島市栄町6-4 (Power City Pivot 內)',
+                            desc: '大啖福島代表性「福島牛」燒肉。',
+                            link: 'https://www.gyutoy.jp/',
+                            details: `JA 全農福島直營，品質有保證。位於福島站附近。`
+                        },
+                        {
+                            type: 'onsne',
+                            tag: '名湯',
+                            time: 'Option',
+                            title: '穴原溫泉 吉川屋',
+                            address: '福島県福島市飯坂町湯野字新湯6',
+                            desc: '奧飯坂名湯，皇室曾下榻的著名溫泉旅館。',
+                            link: 'https://www.yosikawaya.com/'
+                        },
+                        {
+                            type: 'hotel',
+                            tag: '福島',
+                            time: 'Check-in: 16:00',
+                            title: 'APA Hotel〈福島駅前〉',
+                            jpName: 'アパホテル〈福島駅前〉',
+                            address: '〒960-8031 福島県福島市太田町11-2',
+                            phone: '024-536-4111',
+                            bookingId: '260113005097',
+                            details: `預約編號：260113005097 & 260113005145\n交通：福島站西口直結。`
+                        }
+                    ]
+                },
+                {
+                    id: 'day13',
                     date: '2/18 (三)',
-                        title: '會津若松：雪祭與歷史',
-                            events: [
-                                {
-                                    type: 'train',
-                                    tag: 'JR PASS',
-                                    time: '08:00',
-                                    title: '前往會津若松',
-                                    address: 'JR 会津若松駅',
-                                    desc: '搭乘 JR 磐越西線前往會津若松 (約 1 小時 15 分)。'
-                                },
-                                {
-                                    type: 'camera',
-                                    tag: '經典',
-                                    time: '10:00',
-                                    title: '鶴城 (會津若松城)',
-                                    address: '福島県会津若松市追手町1-1',
-                                    desc: '冬季雪化妝的鶴城，絕美景色。',
-                                    link: 'https://www.tsurugajo.com/tsurugajo/'
-                                },
-                                {
-                                    type: 'info',
-                                    tag: '酒造',
-                                    time: '11:30',
-                                    title: '末廣酒造 嘉永藏',
-                                    address: '福島県会津若松市日新町12-38',
-                                    desc: '百年老酒造，可參觀與試飲。',
-                                    link: 'https://www.sake-suehiro.jp/',
-                                    details: `日本酒迷必訪，感受大正浪漫氛圍。`
-                                },
-                                {
-                                    type: 'bus',
-                                    tag: '絕景',
-                                    time: '下午',
-                                    title: '大內宿 (雪之宿)',
-                                    address: '大内宿',
-                                    desc: '日本三大茅葺聚落。必吃：大蔥蕎麥麵 (三澤屋)。',
-                                    details: `【大內宿雪祭資訊】：\n日期通常為 2月第2個週末 (2026年約為 2/14-15)。\n今日 (2/18) 造訪雖無祭典，但仍可欣賞厚雪覆蓋的夢幻雪村景色。\n交通：會津若松站搭乘「猿遊號」巴士。`
-                                },
-                                {
-                                    type: 'camera',
-                                    tag: '鐵道',
-                                    time: 'Option',
-                                    title: '只見線 (只見川第一橋梁)',
-                                    address: '道の駅 尾瀬街道みしま宿',
-                                    desc: '世界最浪漫鐵道絕景。需由「會津宮下站」轉乘巴士。',
-                                    details: `【交通注意】：\n路程較遠。若要前往，建議搭乘始發電車：\n1. 會津若松 ➔ 會津宮下 (約 1.5 小時)。\n2. 轉乘巴士至「道の駅 尾瀬街道みしま宿」。\n3. 步行至展望台俯瞰橋梁。\n⚠️ 班次極少，需精確規劃時間。`
-                                },
-                                {
-                                    type: 'hotel',
-                                    tag: '續住',
-                                    title: 'APA Hotel〈福島駅前〉',
-                                    bookingId: '260113005097'
-                                }
-                            ]
-            },
-            {
-                id: 'day14',
+                    title: '會津若松：雪祭與歷史',
+                    events: [
+                        {
+                            type: 'train',
+                            tag: 'JR PASS',
+                            time: '08:00',
+                            title: '前往會津若松',
+                            address: 'JR 会津若松駅',
+                            desc: '搭乘 JR 磐越西線前往會津若松 (約 1 小時 15 分)。'
+                        },
+                        {
+                            type: 'camera',
+                            tag: '經典',
+                            time: '10:00',
+                            title: '鶴城 (會津若松城)',
+                            address: '福島県会津若松市追手町1-1',
+                            desc: '冬季雪化妝的鶴城，絕美景色。',
+                            link: 'https://www.tsurugajo.com/tsurugajo/'
+                        },
+                        {
+                            type: 'info',
+                            tag: '酒造',
+                            time: '11:30',
+                            title: '末廣酒造 嘉永藏',
+                            address: '福島県会津若松市日新町12-38',
+                            desc: '百年老酒造，可參觀與試飲。',
+                            link: 'https://www.sake-suehiro.jp/',
+                            details: `日本酒迷必訪，感受大正浪漫氛圍。`
+                        },
+                        {
+                            type: 'bus',
+                            tag: '絕景',
+                            time: '下午',
+                            title: '大內宿 (雪之宿)',
+                            address: '大内宿',
+                            desc: '日本三大茅葺聚落。必吃：大蔥蕎麥麵 (三澤屋)。',
+                            details: `【大內宿雪祭資訊】：\n日期通常為 2月第2個週末 (2026年約為 2/14-15)。\n今日 (2/18) 造訪雖無祭典，但仍可欣賞厚雪覆蓋的夢幻雪村景色。\n交通：會津若松站搭乘「猿遊號」巴士。`
+                        },
+                        {
+                            type: 'camera',
+                            tag: '鐵道',
+                            time: 'Option',
+                            title: '只見線 (只見川第一橋梁)',
+                            address: '道の駅 尾瀬街道みしま宿',
+                            desc: '世界最浪漫鐵道絕景。需由「會津宮下站」轉乘巴士。',
+                            details: `【交通注意】：\n路程較遠。若要前往，建議搭乘始發電車：\n1. 會津若松 ➔ 會津宮下 (約 1.5 小時)。\n2. 轉乘巴士至「道の駅 尾瀬街道みしま宿」。\n3. 步行至展望台俯瞰橋梁。\n⚠️ 班次極少，需精確規劃時間。`
+                        },
+                        {
+                            type: 'hotel',
+                            tag: '續住',
+                            title: 'APA Hotel〈福島駅前〉',
+                            bookingId: '260113005097'
+                        }
+                    ]
+                },
+                {
+                    id: 'day14',
                     date: '2/19 (四)',
-                        title: '最後衝刺：踏上歸途',
-                            events: [
-                                {
-                                    type: 'train',
-                                    tag: 'JR PASS Day 5',
-                                    time: '08:15 - 09:48',
-                                    title: '新幹線 やまびこ 124号 (福島 ➔ 東京)',
-                                    address: 'JR 東京駅',
-                                    desc: '⚠️ 必須搭乘此班，以趕上午後的航班。'
-                                },
-                                {
-                                    type: 'flight',
-                                    tag: '碩濤',
-                                    time: '12:40 - 15:50',
-                                    title: 'NH853 東京羽田 (T2) ➔ 台北松山',
-                                    desc: '哥哥返國。',
-                                    address: '羽田空港 第2ターミナル'
-                                },
-                                {
-                                    type: 'flight',
-                                    tag: '家族',
-                                    time: '14:15 - 17:15',
-                                    title: 'CI221 東京羽田 (T3) ➔ 台北松山',
-                                    desc: '家人返國。',
-                                    address: '羽田空港 第3ターミナル'
-                                }
-                            ]
-            }
+                    title: '最後衝刺：踏上歸途',
+                    events: [
+                        {
+                            type: 'train',
+                            tag: 'JR PASS Day 5',
+                            time: '08:15 - 09:48',
+                            title: '新幹線 やまびこ 124号 (福島 ➔ 東京)',
+                            address: 'JR 東京駅',
+                            desc: '⚠️ 必須搭乘此班，以趕上午後的航班。'
+                        },
+                        {
+                            type: 'flight',
+                            tag: '碩濤',
+                            time: '12:40 - 15:50',
+                            title: 'NH853 東京羽田 (T2) ➔ 台北松山',
+                            desc: '哥哥返國。',
+                            address: '羽田空港 第2ターミナル'
+                        },
+                        {
+                            type: 'flight',
+                            tag: '家族',
+                            time: '14:15 - 17:15',
+                            title: 'CI221 東京羽田 (T3) ➔ 台北松山',
+                            desc: '家人返國。',
+                            address: '羽田空港 第3ターミナル'
+                        }
+                    ]
+                }
             ];
 
-        const getTypeIcon = (type) => {
-            switch (type) {
-                case 'flight': return <IconPlane className="text-blue-500" />;
-                case 'train': return <IconTrain className="text-green-600" />;
-                case 'bus': return <IconBus className="text-orange-500" />;
-                case 'hotel': return <IconHotel className="text-purple-600" />;
-                case 'camera': return <IconCamera className="text-pink-500" />;
-                case 'onsen': return <IconOnsen className="text-cyan-500" />;
-                default: return <IconInfo className="text-gray-500" />;
-            }
-        };
+            const getTypeIcon = (type) => {
+                switch (type) {
+                    case 'flight': return <IconPlane className="text-blue-500" />;
+                    case 'train': return <IconTrain className="text-green-600" />;
+                    case 'bus': return <IconBus className="text-orange-500" />;
+                    case 'hotel': return <IconHotel className="text-purple-600" />;
+                    case 'camera': return <IconCamera className="text-pink-500" />;
+                    case 'onsen': return <IconOnsen className="text-cyan-500" />;
+                    default: return <IconInfo className="text-gray-500" />;
+                }
+            };
 
-        return (
-            <div className="flex flex-col min-h-screen max-w-md mx-auto shadow-2xl bg-[#fffaf0] border-x border-gray-200">
-                {/* Header */}
-                <div className="bg-gradient-to-r from-orange-400 to-red-400 text-white p-5 sticky top-0 z-20 shadow-lg">
-                    <div className="flex justify-between items-center">
-                        <div>
-                            <h1 className="text-xl font-bold flex items-center gap-2">
-                                <IconOnsen className="w-6 h-6" />
-                                家族溫泉之旅
-                            </h1>
-                            <p className="text-orange-100 text-sm mt-1">2026/2/12 - 2/19 (Part 2)</p>
-                        </div>
-                        <div className="text-2xl font-bold bg-white/20 px-3 py-1 rounded-lg">
-                            🏮
-                        </div>
-                    </div>
-                </div>
-
-                {/* Top Buttons & Quick Info */}
-                <div className="bg-white p-3 border-b border-gray-100 space-y-3">
-                    <div className="grid grid-cols-2 gap-2">
-                        <div className="bg-orange-50 p-3 rounded-xl border border-orange-100 flex flex-col items-center">
-                            <span className="text-[10px] text-orange-400 font-bold uppercase">JR PASS 東北</span>
-                            <span className="text-sm font-bold text-orange-700">2/15 - 2/19</span>
-                        </div>
-                        <div className="bg-red-50 p-3 rounded-xl border border-red-100 flex flex-col items-center">
-                            <span className="text-[10px] text-red-400 font-bold uppercase">銀山溫泉</span>
-                            <span className="text-sm font-bold text-red-700">2/16 一晚</span>
-                        </div>
-                    </div>
-
-                    <a
-                        href="family_costs.html"
-                        className="flex items-center justify-center gap-3 w-full py-4 bg-gradient-to-r from-rose-500 to-pink-600 text-white font-bold rounded-2xl shadow-md hover:shadow-lg active:scale-[0.98] transition-all"
-                    >
-                        <IconWallet className="w-5 h-5" />
-                        <span>查看家族旅行費用清單 (3人結清總覽)</span>
-                    </a>
-
-                    <div className="bg-red-50 p-4 rounded-xl border border-red-200 space-y-3">
-                        <h3 className="text-sm font-bold text-red-600 flex items-center gap-2">
-                            <IconAlert className="w-4 h-4" />
-                            挽肉と米 渋谷 - 予約ミッション (2/14分)
-                        </h3>
-                        <div className="space-y-2 text-xs text-red-800">
-                            <div className="flex justify-between items-start">
-                                <span className="font-bold">1. Advance Priority (有料):</span>
-                                <div className="text-right font-mono font-bold text-red-600">
-                                    2/1 00:00 (JST)<br />1/31 23:00 (TW)
-                                </div>
-                            </div>
-                            <div className="flex justify-between items-start">
-                                <span className="font-bold">2. WEB記帳 (無料):</span>
-                                <div className="text-right font-mono text-red-500">
-                                    2/7 09:00 (JST)<br />2/7 08:00 (TW)
-                                </div>
-                            </div>
-                            <a
-                                href="https://www.tablecheck.com/shops/hikinikutocome/reserve"
-                                target="_blank"
-                                className="block w-full text-center py-2 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition-all mt-2"
-                            >
-                                挽肉と米 予約リンク (TableCheck)
-                            </a>
-                        </div>
-                    </div>
-
-                    <button
-                        onClick={() => setSelectedBooking({
-                            title: '交通資訊與準備清單',
-                            type: 'transport_summary',
-                            content: (
-                                <div className="space-y-6">
-                                    {/* Sakura Suica Info */}
-                                    <div className="bg-pink-50 p-4 rounded-xl border border-pink-200 shadow-sm">
-                                        <h3 className="text-sm font-bold text-pink-600 uppercase tracking-wider mb-3 flex items-center gap-1">
-                                            🌸 東京限定版「櫻花 Suica」
-                                        </h3>
-                                        <div className="text-xs text-pink-800 space-y-2 leading-relaxed">
-                                            <p className="font-bold">👉 一下飛機就能領 (JR東日本旅行服務中心)</p>
-                                            <ul className="list-disc list-inside space-y-1 pl-1 marker:text-pink-400">
-                                                <li>✅ 卡片效期 28 天 (免押金)</li>
-                                                <li>✅ 可儲值搭車、便利商店消費</li>
-                                                <li>✅ 餘額無法退款 (請盡量用完)</li>
-                                                <li>✅ 超美櫻花設計，可帶回收藏紀念 🌸</li>
-                                            </ul>
-                                            <div className="flex flex-wrap gap-1 mt-2 text-[10px] text-pink-500 font-medium opacity-80">
-                                                <span>#WelcomeSuica</span>
-                                                <span>#東京限定</span>
-                                                <span>#回國免退卡</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="bg-blue-50 p-4 rounded-xl border border-blue-200">
-                                        <h3 className="text-sm font-bold text-blue-600 uppercase tracking-wider mb-3 flex items-center gap-1">
-                                            <IconTrain className="w-4 h-4" /> 核心準備項目
-                                        </h3>
-                                        <div className="space-y-3">
-                                            <div className="flex items-start gap-2 text-xs text-blue-800">
-                                                <span className="shrink-0 font-bold">1.</span>
-                                                <span>{parseMarkdown("**IC 卡 (Suica/Pasmo)**：協助家人於手機或車站辦妥 (iPhone 錢包最快)。")}</span>
-                                            </div>
-                                            <div className="flex items-start gap-2 text-xs text-blue-800">
-                                                <span className="shrink-0 font-bold">2.</span>
-                                                <span>{parseMarkdown("**JR PASS 領取**：2/13 或 2/14 於東京車站先行兌換 3 人份實體券。")}</span>
-                                            </div>
-                                            <div className="flex items-start gap-2 text-xs text-blue-800">
-                                                <span className="shrink-0 font-bold">3.</span>
-                                                <span>{parseMarkdown("**大內宿交通**：2/18 會津若松站需另購「猿遊號」一日券。")}</span>
-                                            </div>
-                                            <div className="flex items-start gap-2 text-xs text-blue-800">
-                                                <span className="shrink-0 font-bold">4.</span>
-                                                <span>{parseMarkdown("**成田快線/Access**：確保家人抵達 T2 時能順利購買 Access 特急票。")}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                                        <h4 className="text-xs font-bold text-slate-700 uppercase mb-2">都內移動小計 (每人預算)</h4>
-                                        <div className="bg-white rounded-lg p-3 space-y-2 text-[11px] font-mono text-slate-600 shadow-sm">
-                                            <div className="flex justify-between"><span>2/13 成田 ➔ 馬喰横山</span><span>~¥1,310</span></div>
-                                            <div className="flex justify-between"><span>2/14 景點巡禮 (地鐵)</span><span>~¥1,000</span></div>
-                                            <div className="flex justify-between"><span>2/15 前往東京車站</span><span>~¥180</span></div>
-                                            <div className="flex justify-between"><span>2/19 前往羽田機場</span><span>~¥500</span></div>
-                                            <div className="flex justify-between border-t border-slate-200 pt-2 font-bold text-blue-600">
-                                                <span>預估總計</span><span>約 ¥3,000</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="bg-orange-50 p-4 rounded-xl border border-orange-200">
-                                        <h4 className="text-xs font-bold text-orange-700 uppercase mb-2">東北在地交通 (現金支付)</h4>
-                                        <div className="space-y-3">
-                                            <div className="bg-white/80 rounded-lg p-2 text-[10px] text-slate-600">
-                                                <p className="font-bold text-slate-800 mb-1">📍 仙台 (2/15)</p>
-                                                <div className="flex justify-between"><span>Loople Sendai 一日券</span><span>¥630</span></div>
-                                            </div>
-                                            <div className="bg-white/80 rounded-lg p-2 text-[10px] text-slate-600">
-                                                <p className="font-bold text-slate-800 mb-1">📍 会津若松 (2/18)</p>
-                                                <div className="flex justify-between"><span>市內 Loop Bus 一日券</span><span>¥600</span></div>
-                                                <div className="flex justify-between text-rose-600 font-bold"><span>猿遊號 (大內宿接駁)</span><span>¥1,100</span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        })}
-                        className="flex items-center justify-center gap-3 w-full py-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold rounded-2xl shadow-md hover:shadow-lg active:scale-[0.98] transition-all"
-                    >
-                        <IconTrain className="w-5 h-5" />
-                        <span>交通請看我 (資訊與準備清單)</span>
-                    </button>
-
-                    <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                        <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1">
-                            <IconWallet className="w-3.5 h-3.5" /> 家族旅行預估費用 (每位家人)
-                        </h3>
-                        <div className="flex justify-between items-end">
+            return (
+                <div className="flex flex-col min-h-screen max-w-md mx-auto shadow-2xl bg-[#fffaf0] border-x border-gray-200">
+                    {/* Header */}
+                    <div className="bg-gradient-to-r from-orange-400 to-red-400 text-white p-5 sticky top-0 z-20 shadow-lg">
+                        <div className="flex justify-between items-center">
                             <div>
-                                <p className="text-2xl font-bold text-slate-800">¥118,113</p>
-                                <p className="text-xs text-slate-400">約 NT$ 26,000 (除機票/餐飲)</p>
+                                <h1 className="text-xl font-bold flex items-center gap-2">
+                                    <IconOnsen className="w-6 h-6" />
+                                    家族溫泉之旅
+                                </h1>
+                                <p className="text-orange-100 text-sm mt-1">2026/2/12 - 2/19 (Part 2)</p>
                             </div>
-                            <div className="text-right">
-                                <span className="text-[10px] bg-slate-200 text-slate-600 px-2 py-0.5 rounded-full font-bold">含 JR PASS / 住宿</span>
+                            <div className="text-2xl font-bold bg-white/20 px-3 py-1 rounded-lg">
+                                🏮
                             </div>
                         </div>
                     </div>
-                </div>
 
-                {/* Ticket Request Sheet Reminder */}
-                <div className="bg-green-50 border-b border-green-100 p-4">
-                    <div className="flex items-center gap-2 mb-2">
-                        <IconTicket className="text-green-600 w-5 h-5" />
-                        <h3 className="text-green-800 text-sm font-bold">新幹線指定席購票單</h3>
-                    </div>
-                    <p className="text-xs text-green-700 leading-relaxed mb-3">
-                        抵達東京後，請將此單與 3 本護照交給 JR 綠色窗口，一次補齊 5 天的所有指定席票券。
-                    </p>
-                    <button
-                        onClick={() => setSelectedBooking({
-                            title: 'JR 指定席購票專用單 (Reservation Sheet)',
-                            details: `JR東日本パス（東北エリア） 利用\n利用期間：2026/02/15 ～ 2026/02/19\n人数：大人 3名\n\n下記の指定席の手配をお願いします。\n(可能であれば、荷物置き場に近い席をお願いします)\n\n1. 【2/15 (日)】\n　はやぶさ 17号：東京 (10:00發) ➔ 仙台\n\n2. 【2/16 (月)】\n　やまびこ 134号：仙台 (10:44發) ➔ 福島\n\n3. 【2/16 (月)】\n　つばさ 133号：福島 (12:12發) ➔ 大石田\n\n4. 【2/17 (火)】\n　つばさ 140号：大石田 (11:30發) ➔ 福島\n\n5. 【2/19 (木)】\n　やまびこ 124号：福島 (08:15發) ➔ 東京`
-                        })}
-                        className="w-full py-2 bg-green-600 text-white text-xs font-bold rounded-lg hover:bg-green-700 transition-colors"
-                    >
-                        點擊開啟購票單內容
-                    </button>
-                </div>
-
-                {/* Timeline */}
-                <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50">
-                    {
-                        itineraryData.map((day) => (
-                            <div key={day.id} className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden card">
-                                <div className="px-4 py-3 bg-slate-100 border-b border-slate-200 flex justify-between items-center">
-                                    <div className="flex items-center gap-2">
-                                        <div className="bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded">
-                                            {day.date.split(' ')[0]}
-                                        </div>
-                                        <h2 className="font-bold text-slate-800">{day.date.split(' ')[1]}</h2>
-                                    </div>
-                                    <span className="text-xs font-medium text-slate-500 truncate max-w-[150px]">{day.title}</span>
-                                </div>
-
-                                <div className="divide-y divide-slate-100">
-                                    {
-                                        day.events.map((event, idx) => (
-                                            <div key={idx} className="p-4 hover:bg-slate-50 transition-colors">
-                                                <div className="flex gap-3">
-                                                    <div className="mt-1 shrink-0">{getTypeIcon(event.type)}</div>
-                                                    <div className="flex-1 min-w-0">
-                                                        <div className="flex justify-between items-start flex-wrap gap-1">
-                                                            <h3 className="font-bold text-slate-900 leading-tight">
-                                                                {event.title}
-                                                                {event.tag && <span className="ml-2 bg-orange-100 text-orange-700 text-[10px] px-1.5 py-0.5 rounded-full align-middle">{event.tag}</span>}
-                                                            </h3>
-                                                            {event.time && (
-                                                                <span className="text-[10px] font-mono bg-slate-200 px-1.5 py-0.5 rounded text-slate-600 whitespace-nowrap">
-                                                                    {event.time}
-                                                                </span>
-                                                            )}
-                                                        </div>
-
-                                                        <p className="text-sm text-slate-600 mt-1 leading-relaxed">{parseMarkdown(event.desc)}</p>
-
-                                                        <div className="flex flex-wrap gap-2 mt-3">
-                                                            {(event.bookingId || event.details) && (
-                                                                <button
-                                                                    onClick={() => setSelectedBooking(event)}
-                                                                    className="inline-flex items-center gap-1 px-3 py-1.5 bg-blue-50 text-blue-600 text-xs font-bold rounded-lg border border-blue-100 hover:bg-blue-100 transition-all font-mono"
-                                                                >
-                                                                    <IconInfo className="w-3.5 h-3.5" />
-                                                                    {event.bookingId && !event.bookingId.includes('_') ? 'ORDER' : 'INFO'}
-                                                                </button>
-                                                            )}
-                                                            {event.link && (
-                                                                <a
-                                                                    href={event.link}
-                                                                    target="_blank"
-                                                                    rel="noopener noreferrer"
-                                                                    className={`inline-flex items-center gap-1 px-3 py-1.5 ${event.link.includes('instagram.com') ? 'bg-fuchsia-50 text-fuchsia-600 border-fuchsia-100 hover:bg-fuchsia-100' : 'bg-gray-50 text-gray-600 border-gray-200 hover:bg-gray-100'} text-xs font-bold rounded-lg border transition-all`}
-                                                                >
-                                                                    {event.link.includes('instagram.com') ? <IconInstagram className="w-3.5 h-3.5" /> : <IconExternalLink className="w-3.5 h-3.5" />}
-                                                                    {event.link.includes('instagram.com') ? 'IG' : 'LINK'}
-                                                                </a>
-                                                            )}
-                                                            {event.address && (
-                                                                <a
-                                                                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.address)}`}
-                                                                    target="_blank"
-                                                                    rel="noopener noreferrer"
-                                                                    className="inline-flex items-center gap-1 px-3 py-1.5 bg-green-50 text-green-600 text-xs font-bold rounded-lg border border-green-100 hover:bg-green-100 transition-all"
-                                                                >
-                                                                    <IconMapPin className="w-3.5 h-3.5" />
-                                                                    MAP
-                                                                </a>
-                                                            )}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        ))
-                                    }
-                                </div>
+                    {/* Top Buttons & Quick Info */}
+                    <div className="bg-white p-3 border-b border-gray-100 space-y-3">
+                        <div className="grid grid-cols-2 gap-2">
+                            <div className="bg-orange-50 p-3 rounded-xl border border-orange-100 flex flex-col items-center">
+                                <span className="text-[10px] text-orange-400 font-bold uppercase">JR PASS 東北</span>
+                                <span className="text-sm font-bold text-orange-700">2/15 - 2/19</span>
                             </div>
-                        ))
-                    }
-                </div>
+                            <div className="bg-red-50 p-3 rounded-xl border border-red-100 flex flex-col items-center">
+                                <span className="text-[10px] text-red-400 font-bold uppercase">銀山溫泉</span>
+                                <span className="text-sm font-bold text-red-700">2/16 一晚</span>
+                            </div>
+                        </div>
 
-                {/* Booking Modal */}
-                {selectedBooking && (
-                    <div
-                        className="fixed inset-0 bg-black/60 z-50 flex items-end sm:items-center justify-center sm:p-4 backdrop-blur-sm animate-[fadeIn_0.2s_ease-out]"
-                        onClick={() => setSelectedBooking(null)}
-                    >
-                        <div
-                            className="bg-white w-full max-w-md max-h-[90vh] sm:rounded-2xl rounded-t-2xl shadow-2xl flex flex-col animate-[slideUp_0.3s_ease-out]"
-                            onClick={e => e.stopPropagation()}
+                        <a
+                            href="family_costs.html"
+                            className="flex items-center justify-center gap-3 w-full py-4 bg-gradient-to-r from-rose-500 to-pink-600 text-white font-bold rounded-2xl shadow-md hover:shadow-lg active:scale-[0.98] transition-all"
                         >
-                            <div className="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50 rounded-t-2xl">
-                                <h3 className="font-bold text-slate-800 flex items-center gap-2">
-                                    <IconInfo className="text-orange-600 w-5 h-5" />
-                                    詳細資訊
-                                </h3>
-                                <button onClick={() => setSelectedBooking(null)} className="p-2 hover:bg-slate-200 rounded-full text-slate-500">
-                                    <IconX className="w-5 h-5" />
-                                </button>
-                            </div>
+                            <IconWallet className="w-5 h-5" />
+                            <span>查看家族旅行費用清單 (3人結清總覽)</span>
+                        </a>
 
-                            <div className="p-6 overflow-y-auto">
-                                <div className="space-y-5">
-                                    {selectedBooking.type === 'transport_summary' ? (
-                                        selectedBooking.content
-                                    ) : (
-                                        <>
-                                            <div>
-                                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">項目</label>
-                                                <p className="text-lg font-bold text-slate-900 leading-tight">{selectedBooking.title}</p>
-                                            </div>
-
-                                            {selectedBooking.bookingId && !selectedBooking.bookingId.includes('_') && (
-                                                <div className="bg-orange-50 p-4 rounded-xl border border-orange-100">
-                                                    <label className="text-[10px] font-bold text-orange-400 uppercase tracking-wider block mb-1">預約編號</label>
-                                                    <p className="text-2xl font-mono font-bold text-orange-700">{selectedBooking.bookingId}</p>
-                                                </div>
-                                            )}
-
-                                            {selectedBooking.details && (
-                                                <div>
-                                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">詳細內容 / 交通攻略</label>
-                                                    <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-sm font-mono text-slate-700 whitespace-pre-line leading-relaxed">
-                                                        {parseMarkdown(selectedBooking.details)}
-                                                    </div>
-                                                </div>
-                                            )}
-
-                                            {selectedBooking.address && (
-                                                <div>
-                                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">地址與地圖</label>
-                                                    <div className="p-3 bg-slate-50 rounded-lg text-sm font-medium leading-snug">
-                                                        {selectedBooking.address}
-                                                    </div>
-                                                </div>
-                                            )}
-                                        </>
-                                    )}
+                        <div className="bg-red-50 p-4 rounded-xl border border-red-200 space-y-3">
+                            <h3 className="text-sm font-bold text-red-600 flex items-center gap-2">
+                                <IconAlert className="w-4 h-4" />
+                                挽肉と米 渋谷 - 予約ミッション (2/14分)
+                            </h3>
+                            <div className="space-y-2 text-xs text-red-800">
+                                <div className="flex justify-between items-start">
+                                    <span className="font-bold">1. Advance Priority (有料):</span>
+                                    <div className="text-right font-mono font-bold text-red-600">
+                                        2/1 00:00 (JST)<br />1/31 23:00 (TW)
+                                    </div>
                                 </div>
+                                <div className="flex justify-between items-start">
+                                    <span className="font-bold">2. WEB記帳 (無料):</span>
+                                    <div className="text-right font-mono text-red-500">
+                                        2/7 09:00 (JST)<br />2/7 08:00 (TW)
+                                    </div>
+                                </div>
+                                <a
+                                    href="https://www.tablecheck.com/shops/hikinikutocome/reserve"
+                                    target="_blank"
+                                    className="block w-full text-center py-2 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition-all mt-2"
+                                >
+                                    挽肉と米 予約リンク (TableCheck)
+                                </a>
                             </div>
+                        </div>
 
-                            <div className="p-4 border-t border-slate-100 bg-slate-50 rounded-b-2xl">
-                                <button onClick={() => setSelectedBooking(null)} className="w-full py-3 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition-all">
-                                    關閉
-                                </button>
+                        <button
+                            onClick={() => setSelectedBooking({
+                                title: '交通資訊與準備清單',
+                                type: 'transport_summary',
+                                content: (
+                                    <div className="space-y-6">
+                                        {/* Sakura Suica Info */}
+                                        <div className="bg-pink-50 p-4 rounded-xl border border-pink-200 shadow-sm">
+                                            <h3 className="text-sm font-bold text-pink-600 uppercase tracking-wider mb-3 flex items-center gap-1">
+                                                🌸 東京限定版「櫻花 Suica」
+                                            </h3>
+                                            <div className="text-xs text-pink-800 space-y-2 leading-relaxed">
+                                                <p className="font-bold">👉 一下飛機就能領 (JR東日本旅行服務中心)</p>
+                                                <ul className="list-disc list-inside space-y-1 pl-1 marker:text-pink-400">
+                                                    <li>✅ 卡片效期 28 天 (免押金)</li>
+                                                    <li>✅ 可儲值搭車、便利商店消費</li>
+                                                    <li>✅ 餘額無法退款 (請盡量用完)</li>
+                                                    <li>✅ 超美櫻花設計，可帶回收藏紀念 🌸</li>
+                                                </ul>
+                                                <div className="flex flex-wrap gap-1 mt-2 text-[10px] text-pink-500 font-medium opacity-80">
+                                                    <span>#WelcomeSuica</span>
+                                                    <span>#東京限定</span>
+                                                    <span>#回國免退卡</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="bg-blue-50 p-4 rounded-xl border border-blue-200">
+                                            <h3 className="text-sm font-bold text-blue-600 uppercase tracking-wider mb-3 flex items-center gap-1">
+                                                <IconTrain className="w-4 h-4" /> 核心準備項目
+                                            </h3>
+                                            <div className="space-y-3">
+                                                <div className="flex items-start gap-2 text-xs text-blue-800">
+                                                    <span className="shrink-0 font-bold">1.</span>
+                                                    <span>{parseMarkdown("**IC 卡 (Suica/Pasmo)**：協助家人於手機或車站辦妥 (iPhone 錢包最快)。")}</span>
+                                                </div>
+                                                <div className="flex items-start gap-2 text-xs text-blue-800">
+                                                    <span className="shrink-0 font-bold">2.</span>
+                                                    <span>{parseMarkdown("**JR PASS 領取**：2/13 或 2/14 於東京車站先行兌換 3 人份實體券。")}</span>
+                                                </div>
+                                                <div className="flex items-start gap-2 text-xs text-blue-800">
+                                                    <span className="shrink-0 font-bold">3.</span>
+                                                    <span>{parseMarkdown("**大內宿交通**：2/18 會津若松站需另購「猿遊號」一日券。")}</span>
+                                                </div>
+                                                <div className="flex items-start gap-2 text-xs text-blue-800">
+                                                    <span className="shrink-0 font-bold">4.</span>
+                                                    <span>{parseMarkdown("**成田快線/Access**：確保家人抵達 T2 時能順利購買 Access 特急票。")}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                            <h4 className="text-xs font-bold text-slate-700 uppercase mb-2">都內移動小計 (每人預算)</h4>
+                                            <div className="bg-white rounded-lg p-3 space-y-2 text-[11px] font-mono text-slate-600 shadow-sm">
+                                                <div className="flex justify-between"><span>2/13 成田 ➔ 馬喰横山</span><span>~¥1,310</span></div>
+                                                <div className="flex justify-between"><span>2/14 景點巡禮 (地鐵)</span><span>~¥1,000</span></div>
+                                                <div className="flex justify-between"><span>2/15 前往東京車站</span><span>~¥180</span></div>
+                                                <div className="flex justify-between"><span>2/19 前往羽田機場</span><span>~¥500</span></div>
+                                                <div className="flex justify-between border-t border-slate-200 pt-2 font-bold text-blue-600">
+                                                    <span>預估總計</span><span>約 ¥3,000</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="bg-orange-50 p-4 rounded-xl border border-orange-200">
+                                            <h4 className="text-xs font-bold text-orange-700 uppercase mb-2">東北在地交通 (現金支付)</h4>
+                                            <div className="space-y-3">
+                                                <div className="bg-white/80 rounded-lg p-2 text-[10px] text-slate-600">
+                                                    <p className="font-bold text-slate-800 mb-1">📍 仙台 (2/15)</p>
+                                                    <div className="flex justify-between"><span>Loople Sendai 一日券</span><span>¥630</span></div>
+                                                </div>
+                                                <div className="bg-white/80 rounded-lg p-2 text-[10px] text-slate-600">
+                                                    <p className="font-bold text-slate-800 mb-1">📍 会津若松 (2/18)</p>
+                                                    <div className="flex justify-between"><span>市內 Loop Bus 一日券</span><span>¥600</span></div>
+                                                    <div className="flex justify-between text-rose-600 font-bold"><span>猿遊號 (大內宿接駁)</span><span>¥1,100</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                            className="flex items-center justify-center gap-3 w-full py-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold rounded-2xl shadow-md hover:shadow-lg active:scale-[0.98] transition-all"
+                        >
+                            <IconTrain className="w-5 h-5" />
+                            <span>交通請看我 (資訊與準備清單)</span>
+                        </button>
+
+                        <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                            <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1">
+                                <IconWallet className="w-3.5 h-3.5" /> 家族旅行預估費用 (每位家人)
+                            </h3>
+                            <div className="flex justify-between items-end">
+                                <div>
+                                    <p className="text-2xl font-bold text-slate-800">¥118,113</p>
+                                    <p className="text-xs text-slate-400">約 NT$ 26,000 (除機票/餐飲)</p>
+                                </div>
+                                <div className="text-right">
+                                    <span className="text-[10px] bg-slate-200 text-slate-600 px-2 py-0.5 rounded-full font-bold">含 JR PASS / 住宿</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                )}
 
-                {/* Footer Space */}
-                <div className="p-8 text-center text-slate-400 text-xs">
-                    祝家族旅遊愉快平安 🏮
+                    {/* Ticket Request Sheet Reminder */}
+                    <div className="bg-green-50 border-b border-green-100 p-4">
+                        <div className="flex items-center gap-2 mb-2">
+                            <IconTicket className="text-green-600 w-5 h-5" />
+                            <h3 className="text-green-800 text-sm font-bold">新幹線指定席購票單</h3>
+                        </div>
+                        <p className="text-xs text-green-700 leading-relaxed mb-3">
+                            抵達東京後，請將此單與 3 本護照交給 JR 綠色窗口，一次補齊 5 天的所有指定席票券。
+                        </p>
+                        <button
+                            onClick={() => setSelectedBooking({
+                                title: 'JR 指定席購票專用單 (Reservation Sheet)',
+                                details: `JR東日本パス（東北エリア） 利用\n利用期間：2026/02/15 ～ 2026/02/19\n人数：大人 3名\n\n下記の指定席の手配をお願いします。\n(可能であれば、荷物置き場に近い席をお願いします)\n\n1. 【2/15 (日)】\n　はやぶさ 17号：東京 (10:00發) ➔ 仙台\n\n2. 【2/16 (月)】\n　やまびこ 134号：仙台 (10:44發) ➔ 福島\n\n3. 【2/16 (月)】\n　つばさ 133号：福島 (12:12發) ➔ 大石田\n\n4. 【2/17 (火)】\n　つばさ 140号：大石田 (11:30發) ➔ 福島\n\n5. 【2/19 (木)】\n　やまびこ 124号：福島 (08:15發) ➔ 東京`
+                            })}
+                            className="w-full py-2 bg-green-600 text-white text-xs font-bold rounded-lg hover:bg-green-700 transition-colors"
+                        >
+                            點擊開啟購票單內容
+                        </button>
+                    </div>
+
+                    {/* Timeline */}
+                    <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50">
+                        {
+                            itineraryData.map((day) => (
+                                <div key={day.id} className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden card">
+                                    <div className="px-4 py-3 bg-slate-100 border-b border-slate-200 flex justify-between items-center">
+                                        <div className="flex items-center gap-2">
+                                            <div className="bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded">
+                                                {day.date.split(' ')[0]}
+                                            </div>
+                                            <h2 className="font-bold text-slate-800">{day.date.split(' ')[1]}</h2>
+                                        </div>
+                                        <span className="text-xs font-medium text-slate-500 truncate max-w-[150px]">{day.title}</span>
+                                    </div>
+
+                                    <div className="divide-y divide-slate-100">
+                                        {
+                                            day.events.map((event, idx) => (
+                                                <div key={idx} className="p-4 hover:bg-slate-50 transition-colors">
+                                                    <div className="flex gap-3">
+                                                        <div className="mt-1 shrink-0">{getTypeIcon(event.type)}</div>
+                                                        <div className="flex-1 min-w-0">
+                                                            <div className="flex justify-between items-start flex-wrap gap-1">
+                                                                <h3 className="font-bold text-slate-900 leading-tight">
+                                                                    {event.title}
+                                                                    {event.tag && <span className="ml-2 bg-orange-100 text-orange-700 text-[10px] px-1.5 py-0.5 rounded-full align-middle">{event.tag}</span>}
+                                                                </h3>
+                                                                {event.time && (
+                                                                    <span className="text-[10px] font-mono bg-slate-200 px-1.5 py-0.5 rounded text-slate-600 whitespace-nowrap">
+                                                                        {event.time}
+                                                                    </span>
+                                                                )}
+                                                            </div>
+
+                                                            <p className="text-sm text-slate-600 mt-1 leading-relaxed">{parseMarkdown(event.desc)}</p>
+
+                                                            <div className="flex flex-wrap gap-2 mt-3">
+                                                                {(event.bookingId || event.details) && (
+                                                                    <button
+                                                                        onClick={() => setSelectedBooking(event)}
+                                                                        className="inline-flex items-center gap-1 px-3 py-1.5 bg-blue-50 text-blue-600 text-xs font-bold rounded-lg border border-blue-100 hover:bg-blue-100 transition-all font-mono"
+                                                                    >
+                                                                        <IconInfo className="w-3.5 h-3.5" />
+                                                                        {event.bookingId && !event.bookingId.includes('_') ? 'ORDER' : 'INFO'}
+                                                                    </button>
+                                                                )}
+                                                                {event.link && (
+                                                                    <a
+                                                                        href={event.link}
+                                                                        target="_blank"
+                                                                        rel="noopener noreferrer"
+                                                                        className={`inline-flex items-center gap-1 px-3 py-1.5 ${event.link.includes('instagram.com') ? 'bg-fuchsia-50 text-fuchsia-600 border-fuchsia-100 hover:bg-fuchsia-100' : 'bg-gray-50 text-gray-600 border-gray-200 hover:bg-gray-100'} text-xs font-bold rounded-lg border transition-all`}
+                                                                    >
+                                                                        {event.link.includes('instagram.com') ? <IconInstagram className="w-3.5 h-3.5" /> : <IconExternalLink className="w-3.5 h-3.5" />}
+                                                                        {event.link.includes('instagram.com') ? 'IG' : 'LINK'}
+                                                                    </a>
+                                                                )}
+                                                                {event.address && (
+                                                                    <a
+                                                                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.address)}`}
+                                                                        target="_blank"
+                                                                        rel="noopener noreferrer"
+                                                                        className="inline-flex items-center gap-1 px-3 py-1.5 bg-green-50 text-green-600 text-xs font-bold rounded-lg border border-green-100 hover:bg-green-100 transition-all"
+                                                                    >
+                                                                        <IconMapPin className="w-3.5 h-3.5" />
+                                                                        MAP
+                                                                    </a>
+                                                                )}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
+
+                    {/* Booking Modal */}
+                    {selectedBooking && (
+                        <div
+                            className="fixed inset-0 bg-black/60 z-50 flex items-end sm:items-center justify-center sm:p-4 backdrop-blur-sm animate-[fadeIn_0.2s_ease-out]"
+                            onClick={() => setSelectedBooking(null)}
+                        >
+                            <div
+                                className="bg-white w-full max-w-md max-h-[90vh] sm:rounded-2xl rounded-t-2xl shadow-2xl flex flex-col animate-[slideUp_0.3s_ease-out]"
+                                onClick={e => e.stopPropagation()}
+                            >
+                                <div className="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50 rounded-t-2xl">
+                                    <h3 className="font-bold text-slate-800 flex items-center gap-2">
+                                        <IconInfo className="text-orange-600 w-5 h-5" />
+                                        詳細資訊
+                                    </h3>
+                                    <button onClick={() => setSelectedBooking(null)} className="p-2 hover:bg-slate-200 rounded-full text-slate-500">
+                                        <IconX className="w-5 h-5" />
+                                    </button>
+                                </div>
+
+                                <div className="p-6 overflow-y-auto">
+                                    <div className="space-y-5">
+                                        {selectedBooking.type === 'transport_summary' ? (
+                                            selectedBooking.content
+                                        ) : (
+                                            <>
+                                                <div>
+                                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">項目</label>
+                                                    <p className="text-lg font-bold text-slate-900 leading-tight">{selectedBooking.title}</p>
+                                                </div>
+
+                                                {selectedBooking.bookingId && !selectedBooking.bookingId.includes('_') && (
+                                                    <div className="bg-orange-50 p-4 rounded-xl border border-orange-100">
+                                                        <label className="text-[10px] font-bold text-orange-400 uppercase tracking-wider block mb-1">預約編號</label>
+                                                        <p className="text-2xl font-mono font-bold text-orange-700">{selectedBooking.bookingId}</p>
+                                                    </div>
+                                                )}
+
+                                                {selectedBooking.details && (
+                                                    <div>
+                                                        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">詳細內容 / 交通攻略</label>
+                                                        <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-sm font-mono text-slate-700 whitespace-pre-line leading-relaxed">
+                                                            {parseMarkdown(selectedBooking.details)}
+                                                        </div>
+                                                    </div>
+                                                )}
+
+                                                {selectedBooking.address && (
+                                                    <div>
+                                                        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">地址與地圖</label>
+                                                        <div className="p-3 bg-slate-50 rounded-lg text-sm font-medium leading-snug">
+                                                            {selectedBooking.address}
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </>
+                                        )}
+                                    </div>
+                                </div>
+
+                                <div className="p-4 border-t border-slate-100 bg-slate-50 rounded-b-2xl">
+                                    <button onClick={() => setSelectedBooking(null)} className="w-full py-3 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition-all">
+                                        關閉
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Footer Space */}
+                    <div className="p-8 text-center text-slate-400 text-xs">
+                        祝家族旅遊愉快平安 🏮
+                    </div>
                 </div>
-            </div>
-        );
+            );
         };
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
