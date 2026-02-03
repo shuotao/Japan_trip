@@ -126,8 +126,6 @@
 
             // 待辦購票清單
             const pendingTickets = [
-
-                { id: 2, text: "2/11 札幌 ➔ 小樽 快速 Airport u-seat (建議提早)" },
                 { id: 3, text: "2/12 札幌 ➔ 機場 JR u-seat (05:55 ➔ 06:28 / 14:44 ➔ 15:24)" }
             ];
 
@@ -423,18 +421,7 @@
                             link: 'https://www.snowfes.com/',
                             bookingId: null
                         },
-                        {
-                            type: 'train',
-                            tag: '朋友x3 (Optional)',
-                            time: '19:30 - 22:30',
-                            title: '小樽雪燈之路 (小樽雪あかりの路)',
-                            address: '小樽運河',
-                            priority: true,
-                            desc: '傍晚搭乘 JR 前往小樽，欣賞運河燭光。',
-                            link: 'https://www.bubu-jp.com/archives/32678#xiao_zun_jing_diantian_gou_shan_ye_jing',
-                            bookingId: 'Otaru_Plan',
-                            details: `【分秒必爭攻略】：\n1. 巴士抵達札幌後，行李直接鎖 JR 札幌站 Locker (或直接去飯店 Check-in 如果時間允許)。\n2. 搭乘 JR 接續前往小樽。\n⚠️ 雪燈之路 21:00 熄燈，動作要快！\n\n【交通推薦：JR 快速 Airport (快速エアポート)】：\n比較安全的選擇，務必搭乘「快速 Airport」。\n★ 強烈建議「先行購票」預約 u-seat (指定席)。\n\n【建議車次 (回程示例)】：\n若擔心回程人多，可先預訂小樽往札幌的 u-seat：\n● Airport 160號：18:00 小樽發 ➔ 18:35 抵達札幌 (往新千歲機場)\n● Airport 166號：18:30 小樽發 ➔ 19:07 抵達札幌 (往新千歲機場)\n優點：保證有位子、不用人擠人、有專屬行李架。`
-                        },
+
                         {
                             type: 'shopping',
                             time: '22:30',
@@ -581,14 +568,34 @@
                             {/* To Shuotao */}
                             <div className="bg-white/80 p-3 rounded-lg border border-yellow-200 shadow-sm">
                                 <span className="font-bold text-slate-900 text-sm block mb-2 border-b border-yellow-100 pb-1">給 碩濤 (Shuotao):</span>
-                                <div>
+                                <div className="mb-2">
                                     <p className="font-bold text-slate-800 text-sm mb-1">
-                                        🧑‍🤝‍🧑 嘉祥、喬玫、瑞文 <span className="text-xs font-normal text-slate-500">(每人)</span>：
+                                        👤 嘉祥 <span className="text-xs font-normal text-slate-500"></span>：
+                                        <span className="text-red-600 text-lg ml-1">¥36,500</span>
+                                    </p>
+                                    <ul className="text-xs text-slate-500 pl-2 border-l-2 border-slate-200 space-y-0.5">
+                                        <li>APA 羽田 (總價 ¥68,000 ÷ 4) = ¥17,000</li>
+                                        <li>APA 札幌 (¥13,000 + 幫蛇出 ¥6,500) = ¥19,500</li>
+                                    </ul>
+                                </div>
+                                <div className="mb-2">
+                                    <p className="font-bold text-slate-800 text-sm mb-1">
+                                        👤 喬玫 <span className="text-xs font-normal text-slate-500"></span>：
                                         <span className="text-red-600 text-lg ml-1">¥30,000</span>
                                     </p>
                                     <ul className="text-xs text-slate-500 pl-2 border-l-2 border-slate-200 space-y-0.5">
                                         <li>APA 羽田 (總價 ¥68,000 ÷ 4) = ¥17,000</li>
                                         <li>APA 札幌 (總價 ¥52,000 ÷ 4) = ¥13,000</li>
+                                    </ul>
+                                </div>
+                                <div className="mb-2">
+                                    <p className="font-bold text-slate-800 text-sm mb-1">
+                                        🐍 蛇 (瑞文) <span className="text-xs font-normal text-slate-500"></span>：
+                                        <span className="text-red-600 text-lg ml-1">¥17,000</span>
+                                    </p>
+                                    <ul className="text-xs text-slate-500 pl-2 border-l-2 border-slate-200 space-y-0.5">
+                                        <li>APA 羽田 (總價 ¥68,000 ÷ 4) = ¥17,000</li>
+                                        <li className="text-green-600">💚 APA 札幌免付 (由碩濤+嘉祥幫出)</li>
                                     </ul>
                                 </div>
                             </div>
@@ -608,15 +615,28 @@
                                     </ul>
                                 </div>
 
-                                <div className="border-t border-slate-100 pt-2">
+                                <div className="border-t border-slate-100 pt-2 mb-2">
                                     <p className="font-bold text-slate-800 text-sm mb-1">
-                                        👫 喬玫、瑞文 <span className="text-xs font-normal text-slate-500">(每人)</span>：
+                                        👤 喬玫：
                                         <span className="text-red-600 text-lg ml-1">¥79,450</span>
                                     </p>
                                     <ul className="text-xs text-slate-500 pl-2 border-l-2 border-slate-200 space-y-0.5">
                                         <li>二世谷住宿 (總價 ¥272,800 ÷ 4) = ¥68,200</li>
                                         <li>回程巴士 (總價 ¥21,000 ÷ 4) = ¥5,250</li>
                                         <li>去程巴士 (總價 ¥18,000 ÷ 3) = ¥6,000</li>
+                                    </ul>
+                                </div>
+
+                                <div className="border-t border-slate-100 pt-2">
+                                    <p className="font-bold text-slate-800 text-sm mb-1">
+                                        🐍 蛇 (瑞文)：
+                                        <span className="text-red-600 text-lg ml-1">¥79,450</span>
+                                    </p>
+                                    <ul className="text-xs text-slate-500 pl-2 border-l-2 border-slate-200 space-y-0.5">
+                                        <li>二世谷住宿 (總價 ¥272,800 ÷ 4) = ¥68,200</li>
+                                        <li>回程巴士 (總價 ¥21,000 ÷ 4) = ¥5,250</li>
+                                        <li>去程巴士 (總價 ¥18,000 ÷ 3) = ¥6,000</li>
+                                        <li className="text-green-600 font-medium">💚 2/11 札幌住宿免付 (由碩濤+嘉祥幫出)</li>
                                     </ul>
                                 </div>
                             </div>
