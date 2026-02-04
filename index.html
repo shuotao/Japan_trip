@@ -181,7 +181,8 @@
                             desc: '全日本最大Outlet。羽田機場搭巴士直達(約25-40分)。',
                             details: `【去程交通】：\n1. 09:45 飯店出發，步行至穴守稲荷駅，搭乘京急線至「羽田機場」(建議T1或T2)。\n2. 前往巴士售票處購買往「木更津 Outlet」車票 (或刷IC卡)。\n3. 建議搭乘 10:20 左右班次 (班次多，不用預約，排隊上車)。\n\n【回程】：14:30 Outlet發車 -> 15:20 回機場。\n\n重點：Arc'teryx, Burton, TNF`,
                             bookingId: 'Shopping_Info',
-                            link: 'https://mitsui-shopping-park.com/mop/kisarazu/tw/'
+                            link: 'https://mitsui-shopping-park.com/mop/kisarazu/tw/',
+                            pdfLink: 'rosen_260116.pdf'
                         },
                         {
                             type: 'shopping',
@@ -741,6 +742,18 @@
                                                                 >
                                                                     <IconExternalLink className="w-3.5 h-3.5" />
                                                                     連結
+                                                                </a>
+                                                            )}
+
+                                                            {event.pdfLink && (
+                                                                <a
+                                                                    href={event.pdfLink}
+                                                                    target="_blank"
+                                                                    rel="noopener noreferrer"
+                                                                    className="inline-flex items-center gap-1 px-3 py-1.5 bg-red-50 text-red-600 text-xs font-bold rounded-lg border border-red-100 hover:bg-red-100 active:scale-95 transition-all"
+                                                                >
+                                                                    <IconInfo className="w-3.5 h-3.5" />
+                                                                    路線圖 PDF
                                                                 </a>
                                                             )}
 
