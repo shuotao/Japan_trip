@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>家族旅行費用清單 | 東北溫泉之旅</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- React & ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+        }
+
+        .card {
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        const IconArrowLeft = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m12 19-7-7 7-7" /><path d="M19 12H5" /></svg>
+        );
+        const IconHotel = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M10 22v-6.57" /><path d="M12 11h.01" /><path d="M12 7h.01" /><path d="M14 15.43V22" /><path d="M15 16a5 5 0 0 0-6 0" /><path d="M16 11h.01" /><path d="M16 7h.01" /><path d="M8 11h.01" /><path d="M8 7h.01" /><rect x="4" y="2" width="16" height="20" rx="2" /></svg>
+        );
+        const IconTicket = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" /><path d="M13 5v2" /><path d="M13 17v2" /><path d="M13 11v2" /></svg>
+        );
+
+        const FamilyBudgetApp = () => {
+            const formatYen = (amount) => `¥${amount.toLocaleString()}`;
+
+            const budgetData = [
+                {
+                    date: '2/13 - 2/15',
+                    category: '住宿 (東京)',
+                    title: 'APA 日本橋 馬喰横山',
+                    amount: 60113,
+                    desc: '3人1室，共 2 晚',
+                    tag: '現場支付'
+                },
+                {
+                    date: '2/15 - 2/16',
+                    category: '住宿 (仙台)',
+                    title: 'APA 仙台駅五橋',
+                    amount: 35000,
+                    desc: '3人連通房，共 1 晚',
+                    tag: '現場支付'
+                },
+                {
+                    date: '2/15',
+                    category: '交通',
+                    title: 'JR PASS (東北地區)',
+                    amount: 90000,
+                    desc: '¥30,000 × 3人 (5日券)',
+                    tag: '現場購票'
+                },
+                {
+                    date: '2/16 - 2/17',
+                    category: '住宿 (銀山)',
+                    title: '銀山溫泉 藤屋',
+                    amount: 115000,
+                    desc: '一泊二食，極致享受',
+                    tag: '訂金已付/現場結清'
+                },
+                {
+                    date: '2/17 - 2/19',
+                    category: '住宿 (福島)',
+                    title: 'APA 福島駅前',
+                    amount: 30226,
+                    desc: '單人+雙人，共 2 晚',
+                    tag: '現場支付'
+                },
+                {
+                    date: '2/15 - 2/18',
+                    category: '交通 (在地)',
+                    title: '東北在地觀光巴士',
+                    amount: 7000,
+                    desc: '仙台 Loople + 猿遊號 + 郡山巴士 (3人份)',
+                    tag: '現場現金'
+                },
+                {
+                    date: '2/13 - 2/19',
+                    category: '預估雜費',
+                    title: '餐飲與零用',
+                    amount: 143000,
+                    desc: '3人均分預算約 ¥47,000/人',
+                    tag: '自費/公費'
+                }
+            ];
+
+            const grandTotal = budgetData.reduce((sum, item) => sum + item.amount, 0);
+
+            return (
+                <div className="flex flex-col min-h-screen max-w-md mx-auto bg-white/30 backdrop-blur-sm">
+                    {/* Header */}
+                    <div className="bg-white/20 p-5 sticky top-0 z-20 backdrop-blur-md border-b border-white/30">
+                        <div className="flex items-center gap-3">
+                            <a href="index2.html" className="p-2 bg-white/50 rounded-full text-rose-600">
+                                <IconArrowLeft className="w-5 h-5" />
+                            </a>
+                            <h1 className="text-xl font-bold text-rose-800">家族旅行總預算清單</h1>
+                        </div>
+                    </div>
+
+                    {/* Total Summary */}
+                    <div className="p-4">
+                        <div className="bg-gradient-to-br from-rose-500 to-pink-600 rounded-3xl p-6 text-white shadow-xl animate-fade-in">
+                            <p className="text-rose-100 text-sm font-medium">預計結清總金額 (3人)</p>
+                            <h2 className="text-4xl font-black mt-1">{formatYen(grandTotal)}</h2>
+                            <p className="text-rose-100 text-xs mt-2">約 NT$ {Math.round(grandTotal * 0.2).toLocaleString()} 元</p>
+                        </div>
+                    </div>
+
+                    {/* Cost List */}
+                    <div className="flex-1 p-4 space-y-4">
+                        {budgetData.map((item, idx) => (
+                            <div key={idx} className="bg-white/80 rounded-2xl p-4 shadow-sm border border-white/50 card animate-fade-in" style={{ animationDelay: `${idx * 0.1}s` }}>
+                                <div className="flex justify-between items-start mb-2">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-[10px] font-bold px-2 py-0.5 bg-rose-100 text-rose-600 rounded-full">{item.category}</span>
+                                        <span className="text-[10px] text-slate-400 font-mono">{item.date}</span>
+                                    </div>
+                                    <span className="text-[10px] font-bold text-emerald-500">{item.tag}</span>
+                                </div>
+                                <h3 className="font-bold text-slate-800 leading-tight">{item.title}</h3>
+                                <p className="text-xs text-slate-500 mt-1">{item.desc}</p>
+                                <div className="mt-3 flex justify-between items-end">
+                                    <div className="flex gap-2">
+                                        {item.category.includes('住宿') && <IconHotel className="w-4 h-4 text-rose-300" />}
+                                        {item.category.includes('交通') && <IconTicket className="w-4 h-4 text-rose-300" />}
+                                    </div>
+                                    <span className="text-xl font-black text-rose-600 font-mono">{formatYen(item.amount)}</span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Footer Warning */}
+                    <div className="p-6 text-center text-rose-700/60 text-[10px]">
+                        * 以上費用為 3 人合計預估值，實際金額以現場結帳為準。
+                    </div>
+
+                    {/* Back Button */}
+                    <div className="p-4 bg-white/20">
+                        <a href="index2.html" className="flex items-center justify-center gap-2 w-full py-3 bg-white text-rose-600 font-bold rounded-xl shadow-lg active:scale-95 transition-all">
+                            返回家族行程
+                        </a>
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<FamilyBudgetApp />);
+    </script>
+</body>
+
+</html>

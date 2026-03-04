@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>北海道滑雪之旅 (2/5 - 2/12)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- React & ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body {
+            background-color: #f0f9ff;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        .card {
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Custom Scrollbar for nicer look */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        // --- SVG Icons Components (Inline for reliability) ---
+        const IconPlane = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M2 12h10" /><path d="M9 4v16" /><path d="m3 9 3 3-3 3" /><path d="M12 6h5a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3h-5" /></svg>
+        ); // Simplified plane representation or similar transport icon
+        const IconTrain = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="16" height="16" x="4" y="3" rx="2" /><path d="M4 11h16" /><path d="M12 3v8" /><path d="m8 19-2 3" /><path d="m18 22-2-3" /><path d="M8 15h0" /><path d="M16 15h0" /></svg>
+        );
+        const IconBus = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M8 6v6" /><path d="M15 6v6" /><path d="M2 12h19.6" /><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3" /><circle cx="7" cy="18" r="2" /><path d="M9 18h5" /><circle cx="16" cy="18" r="2" /></svg>
+        );
+        const IconHotel = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M10 22v-6.57" /><path d="M12 11h.01" /><path d="M12 7h.01" /><path d="M14 15.43V22" /><path d="M15 16a5 5 0 0 0-6 0" /><path d="M16 11h.01" /><path d="M16 7h.01" /><path d="M8 11h.01" /><path d="M8 7h.01" /><rect x="4" y="2" width="16" height="20" rx="2" /></svg>
+        );
+        const IconSnow = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m10 20-1.25-2.5L6 18" /><path d="M10 4 8.75 6.5 6 6" /><path d="m14 20 1.25-2.5L18 18" /><path d="m14 4 1.25 2.5L18 6" /><path d="m17 21 3-6-3-3" /><path d="m17 3 3 6-3 3" /><path d="M2 12h6.5L10 9" /><path d="m20 10-1.5 2 1.5 2" /><path d="M22 12h-6.5L14 15" /><path d="m4 10 1.5 2L4 14" /><path d="m7 21-3-6 3-3" /><path d="m7 3-3 6 3 3" /></svg>
+        );
+        const IconShopping = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" /><path d="M3 6h18" /><path d="M16 10a4 4 0 0 1-8 0" /></svg>
+        );
+        const IconInfo = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>
+        );
+        const IconExternalLink = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
+        );
+        const IconMapPin = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>
+        );
+        const IconClock = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+        );
+        const IconX = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+        );
+        const IconAlert = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" /><path d="M12 9v4" /><path d="M12 17h.01" /></svg>
+        );
+        const IconCoupon = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M19.5 12.57a6 6 0 0 1 0-8.57 6 6 0 0 0 0-8.57V3h-15v2.43a6 6 0 0 0 0 8.57 6 6 0 0 0 0 8.57V21h15v-2.43a6 6 0 0 1 0-8.57z" /><circle cx="9" cy="12" r="1.5" /><circle cx="15" cy="12" r="1.5" /></svg>
+        );
+
+        const IconUser = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+        );
+
+        const SkiTripApp = () => {
+            const [selectedBooking, setSelectedBooking] = useState(null);
+
+            // 待辦購票清單
+            const pendingTickets = [
+                { id: 3, text: "2/12 札幌 ➔ 機場 JR u-seat (05:55 ➔ 06:28 / 14:44 ➔ 15:24)" }
+            ];
+
+            // 行程數據 - 專注於 2/5 - 2/12
+            const itineraryData = [
+                {
+                    id: 'day0',
+                    date: '2/5 (四)',
+                    title: '啟程：抵達東京',
+                    events: [
+                        {
+                            type: 'flight',
+                            tag: '全員',
+                            time: '16:50 - 20:40',
+                            title: 'NH854 台北松山 ➔ 東京羽田 (T2)',
+                            address: '羽田空港 第2ターミナル',
+                            desc: '抵達後前往飯店。建議先買好 Suica。',
+                            bookingId: null
+                        },
+                        {
+                            type: 'hotel',
+                            time: 'Check-in: 22:00',
+                            price: '¥68,000 (總價)',
+                            title: 'APA Hotel〈羽田 穴守稲荷駅前〉',
+                            jpName: 'アパホテル〈羽田 穴守稲荷駅前〉',
+                            address: '〒144-0043 東京都大田区羽田4-14-1',
+                            phone: '0XX-XXXX-XXXX',
+                            bookingId: 'SAMPLE-001',
+                            details: `予約番号：SAMPLE-001\n宿泊日：2026/02/05 - 2026/02/07 (2泊)\n部屋數：2間 (人數：2名)\n合計金額：68,000円\n交通：京急線「穴守稻荷站」出口步行1分鐘 (車站僅有一個出口)。\n\n【機場前往飯店】：\n1. 從羽田機場 (T1/T2/T3 皆可) 搭乘「京急線」。\n2. 搭乘「普通」、「急行」或「特急」皆可 (注意：快特/Airport快特通常不停)。\n3. 於「穴守稻荷站」下車，由唯一出口出站即達。`
+                        }
+                    ]
+                },
+                {
+                    id: 'day1',
+                    date: '2/6 (五)',
+                    title: '補貨 & 朋友探險',
+                    events: [
+                        {
+                            type: 'train',
+                            tag: '早晨',
+                            time: '07:13 - 09:00',
+                            title: '大谿山 豪徳寺 (招財貓)',
+                            address: '東京都世田谷区豪徳寺2-24-7',
+                            desc: '成員B、成員C與我，一大早去參拜招財貓發源地。',
+                            details: `【交通攻略 (新宿出發)】：\n1. ⚠️ **務必搭乘「各駅停車」** (急行不停靠)。\n2. 推薦班次：**07:13 新宿發** (小田急小田原線) ➔ **07:28 豪徳寺著**。\n   (備案：07:21發 ➔ 07:37著 / 07:31發 ➔ 07:47著)\n3. 票價：IC卡 ¥199。\n\n【參拜重點】：\n- 寺廟開門：06:00 (境內散步、拍照)\n- 寺務所 (買貓/御守)：**08:00 開始** (務必準時排隊，非常搶手)\n\n【回程 (往原宿)】：\n豪徳寺 (小田急) ➔ 新宿 (轉乘 JR 山手線) ➔ 原宿站。\n預計車程約 30-40 分鐘，可銜接 09:30 左右的明治神宮行程。`
+                        },
+                        {
+                            type: 'shopping',
+                            tag: 'Outlet',
+                            time: '11:00 - 14:30',
+                            title: '三井 OUTLET PARK 木更津',
+                            address: '千葉県木更津市金田東3-1-1',
+                            desc: '全日本最大Outlet。羽田機場搭巴士直達(約25-40分)。',
+                            details: `【去程交通】：\n1. 09:45 飯店出發，步行至穴守稲荷駅，搭乘京急線至「羽田機場」(建議T1或T2)。\n2. 前往巴士售票處購買往「木更津 Outlet」車票 (或刷IC卡)。\n3. 建議搭乘 10:20 左右班次 (班次多，不用預約，排隊上車)。\n\n【回程】：14:30 Outlet發車 -> 15:20 回機場。\n\n重點：Arc'teryx, Burton, TNF`,
+                            bookingId: 'Shopping_Info',
+                            link: 'https://mitsui-shopping-park.com/mop/kisarazu/tw/',
+                            pdfLink: 'rosen_260116.pdf'
+                        },
+                        {
+                            type: 'shopping',
+                            tag: '朋友',
+                            time: '09:30 - 12:00',
+                            title: '明治神宮 & 表參道 & 龍貓',
+                            address: '東京都渋谷区神宮前6-1-9',
+                            desc: '行程重點：明治神宮散步 + 表參道逛街。',
+                            details: `【路線建議】：\n1. JR 原宿站：請由 **表參道口 (Omotesando Exit)** 出站。\n2. 地鐵 明治神宮前站：請由 **2號出口** 出站。\n3. 先參拜「明治神宮」，再沿著表參道直向步行約 10 分鐘。\n\n🌟 超重要：請去「Kiddy Land 原宿店」(表參道上)。\n這裡有巨大的吉卜力專區 (龍貓) 和 Snoopy Town，一次滿足買龍貓心願！`,
+                            bookingId: 'Ghibli_Plan',
+                            link: 'https://www.kiddyland.co.jp/harajuku/'
+                        },
+                        {
+                            type: 'train',
+                            tag: '朋友',
+                            time: '13:30 - 15:30',
+                            title: '東京車站：企鵝 & 書店',
+                            address: '東京駅 グランスタ東京',
+                            desc: '午餐後前往東京車站。B1 企鵝周邊 & 丸善書店。',
+                            details: `【企鵝周邊 (站內店)】：\n地點：Gransta Tokyo B1F。\n導航：捷運下車後找 **丸之內地下中央口 (Marunouchi Underground Central Gate)** 附近。\n\n【書店 (站外大樓)】：\n地點：丸善 丸の内本店 (OAZO 大樓 1-4F)。\n出口：請由 **丸之內北口 (Marunouchi North Exit)** 出站，正對面即是 OAZO 大樓。`,
+                            bookingId: 'Tokyo_St_Plan',
+                            link: 'https://honto.jp/store/detail_1572000_14HB310.html'
+                        },
+                        {
+                            type: 'shopping',
+                            tag: 'Option',
+                            time: '彈性',
+                            title: 'Apple / 3C 家電採購',
+                            address: 'Bic Camera / Yodobashi Camera',
+                            desc: '購買 iPhone/MacBook 等蘋果產品或是其他家電。',
+                            bookingId: 'Shopping_Guide',
+                            details: `【⚠️ 退稅重要須知】：\n1. **Apple 直營店 (Apple Store)**：\n   ❌ **目前不提供退稅服務**。價格即為含稅價。\n   ✅ 優點：規格齊全、可買美式鍵盤(需預訂)。\n\n2. **大型電器行 (Bic Camera / Yodobashi / Labi)**：\n   ✅ **提供 10% 免稅** (消耗品需滿 ¥5000，一般物品需滿 ¥5000)。\n   ✅ **額外折扣**：出示折價券 (Coupon) 或使用特定信用卡 (如 JCB) 可再享 3%~7% 折扣。\n   ⚠️ 缺點：蘋果產品庫存流動快，新款 iPhone/Mac 可能缺貨，且通常只有日式鍵盤。\n\n【推薦地點】：\n📍 **Bic Camera 有樂町店** (靠近銀座/東京車站)：東京最大旗艦店之一，貨源較足。\n📍 **Yodobashi Camera 秋葉原 (Akiba)**：超級大，什麼都有。\n📍 **Apple 丸之內**：東京車站對面，純體驗或買不需退稅的特規機。`
+                        },
+                        {
+                            type: 'shopping',
+                            tag: 'Option',
+                            time: '彈性',
+                            title: 'DHC 銀座直營店 (Ginza Inz 2)',
+                            address: '東京都中央区銀座西2-2先 銀座インズ2 1F',
+                            desc: 'DHC 直營店，商品齊全可退稅。',
+                            link: 'http://www.ginza-inz.co.jp/',
+                            bookingId: 'DHC_Info',
+                            details: `【店家資訊】：\n位置：Ginza Inz 2 (銀座インズ2) 1樓。\n營業時間：11:00 - 20:00 (依設施規定)。\n電話：03-3567-6201\n\n【交通引導】：\n1. 就在有樂町站/銀座一丁目站附近，交通非常方便。\n2. 從 **JR 有樂町站** 中央口出來，往銀座方向走即達。\n3. 從 **地鐵 銀座站** C9 出口直結。\n\n備註：DHC 直營店，可諮詢並試用產品。`
+                        },
+                        {
+                            type: 'shopping',
+                            tag: '展覽',
+                            time: '彈性',
+                            title: '攻殻機動隊展 Ghost and the Shell',
+                            address: 'TOKYO NODE Toranomon Hills Station Tower',
+                            desc: '全系列最大規模展覽，虎之門 Hills (TOKYO NODE)。',
+                            link: 'https://tokyonode.jp/sp/exhibition-ghostintheshell/',
+                            bookingId: 'Ghost_Shell_Info',
+                            details: `【展覽概要】：\n日期：2026年1月30日〜4月5日\n地點：TOKYO NODE GALLERY A/B/C (虎ノ門ヒルズ ステーションタワー 45F)\n門票：一般 2,700円 (前売 2,500円)、高校生・中学生 1,900円\n\n【見どころ Point ☝️】：\n✔️ 1600点以上のアーカイブから全シリーズを振り返る\n✔️ 2026年新作アニメ原画も先行公開👏\n✔️ 攻殻機動隊の作品世界に入り込む、圧巻のインスタレーション作品🏙️\n\n【交通アクセス】：\n📍 東京メトロ・日比谷線「虎ノ門ヒルズ」駅（直結）\n📍 東京メトロ・銀座線「虎ノ門」駅（地下通路で接続）`
+                        },
+                        {
+                            type: 'shopping',
+                            tag: 'Option',
+                            time: '彈性',
+                            title: '哈利波特：赤坂魔法處 (Mahoudokoro)',
+                            address: 'Akasaka Biz Tower',
+                            desc: '哈利波特主題街區與專賣店。',
+                            link: 'https://warnerbros.co.jp/c/harrypotter/mahoudokoro/index.html',
+                            bookingId: 'Harry_Potter_Info',
+                            details: `【景點特色】：\n位於赤坂 Sacas (Akasaka Sacas) 的「哈利波特魔法處」，周邊有巨大的時光器裝飾與霍格華茲氛圍，非常好拍。\n\n【交通攻略】：\n📍 **從 明治神宮/原宿 出發** (最順路)：\n1. 步行至 **明治神宮前〈原宿〉站**。\n2. 搭乘 **千代田線 (Chiyoda Line)** 往代代木上原/綾瀨方向 (往赤坂)。\n3. 於 **赤坂站 (Akasaka Station)** 下車。\n4. 出口 **3b** 直結 Akasaka Biz Tower。\n⏱️ 車程約 7 分鐘。\n\n📍 **從 東京車站 出發**：\n1. 步行至 **二重橋前站** (千代田線) 或搭乘 **丸之內線** 至 國會議事堂前 轉車。\n2. 建議直接從東京車站搭計程車 (約 15 分鐘)，多人分擔划算。`
+                        },
+                        {
+                            type: 'shopping',
+                            tag: 'Option',
+                            time: '16:00 - 21:00',
+                            title: 'Japan Brewers Cup 2026 (橫濱啤酒節)',
+                            address: 'Yokohama Osanbashi Hall',
+                            desc: '日本精釀啤酒盛會，橫濱大棧橋大廳。',
+                            link: 'https://www.japanbrewerscup.jp/',
+                            bookingId: 'Beer_Fest_Info',
+                            details: `【活動資訊】：\n地點：横浜大さん橋ホール (Yokohama Osanbashi Hall)\n特色：集結日本各地精釀啤酒與比賽，氣氛熱鬧。\n\n【交通攻略】：\n📍 **從 東京市區 出發**：\n1. 搭乘 **JR 東海道線** 或 **橫須賀線** 至「橫濱站」。\n2. 轉乘 **港未來線 (Minatomirai Line)** 至 **日本大通站 (Nihon-odori)**。\n3. 步行約 7 分鐘抵達大棧橋。\n\n📍 **從 羽田機場 (APA飯店) 出發**：\n1. 搭乘 **京急線 (Keikyu Line)** 往橫濱/逗子方向。\n2. 至「橫濱站」轉乘 **港未來線**。\n⏱️ 總車程約 40-50 分鐘。\n\n⚠️ 注意：本日為移動日/購物日，飲酒請適量，隔天一早要搭飛機！`
+                        },
+                        {
+                            type: 'info',
+                            tag: '晚餐',
+                            time: '20:15',
+                            title: '挽肉と米 澀谷 (Hikiniku to Kome)',
+                            address: '東京都渋谷区道玄坂2-28-1 椎津ビル 3F',
+                            desc: '超人氣炭烤漢堡排。已付費預約 (1人)。',
+                            bookingId: 'SAMPLE-RES',
+                            details: `【預約內容】：\n予約ID：SAMPLE-RES\n人數：1名\n時間：20:15\n金額：¥1,980 (已預付)\n\n【注意事項】：\n1. 逾時 10 分鐘將自動取消。\n2. 需向櫃台出示「預約番號」。\n3. 現場可再加購飲品。`
+                        },
+                        {
+                            type: 'train',
+                            tag: '終電',
+                            time: '23:40',
+                            title: '終電情報：東京站 ➔ 飯店',
+                            desc: '東京 23:40 (京濱東北 6號月台) ➔ 品川 23:53 ➔ 步行轉乘 ➔ 品川 23:59 (京急急行) ➔ 穴守 00:20',
+                            details: `【末班車詳細動線】：\n1. **23:40 東京發** (京濱東北線各停 大船行 / 6號月台 / JK26)\n2. **23:53 抵達品川** (6 站 / 約 13 分)\n3. 步行轉乘 (約 5 分鐘)\n4. **23:59 品川發車** (京急本線急行 1號月台 / KK01)\n   (繼續搭乘至機場線直通)\n5. **00:20 抵達穴守稻荷**\n\n⚠️ 錯過這班就沒車回飯店了，請務必掌握時間。`
+                        },
+                        {
+                            type: 'hotel',
+                            time: '續住',
+                            title: 'APA Hotel〈羽田 穴守稲荷駅前〉',
+                            bookingId: 'SAMPLE-001',
+                            desc: '全員會合。'
+                        }
+                    ]
+                },
+                {
+                    id: 'day2',
+                    date: '2/7 (六)',
+                    title: '移動日：前往北海道二世谷',
+                    events: [
+                        {
+                            type: 'flight',
+                            tag: '我',
+                            time: '07:00 - 08:30',
+                            title: 'NH051 東京羽田 ➔ 札幌新千歲',
+                            address: '新千歲空港 国内線ターミナル',
+                            desc: '接續 11:00 巴士。',
+                            bookingId: 'Flight_NH051_Info',
+                            details: `【⏰ 致命時間點】：\n**05:30** 務必離開飯店房間！!\n\n【詳細交通攻略 (經天空橋轉乘)】：\n1. **05:30** 穴守稲荷發 (京急 1番線) ➔ **05:31** 抵達天空橋\n   (乘車位置：[4/6/8両] 後方 / 運價 ¥150)\n2. **05:38** 天空橋發 (東京單軌) ➔ **05:46** 抵達羽田 T2\n   (運價 ¥317 / ANA 利用專用)\n\n【其他直達備案】：\n搭乘京急線直達羽田 T1/T2：推薦班次 **05:43 / 05:54**。\n\n【報到提示】：\n預計 **06:00** 前抵達櫃台，掛行李 + 過安檢。⚠️ 早晨人多，請勿遲到。`
+                        },
+                        {
+                            type: 'bus',
+                            time: '11:00 - 13:45',
+                            title: 'Hokkaido Resort Liner (便名 103)',
+                            address: '新千歲空港 国内線ターミナル',
+                            desc: '新千歲機場 ➔ Hirafu Welcome Center',
+                            bookingId: 'SAMPLE-002',
+                            details: `予約番号：SAMPLE-002\n利用日：2026/02/07\n区間：新千歳空港 (11:00発) ⇒ ニセコ (13:45着)\n乗車場所：国内線ターミナル (受付カウンターへ)\n降車場所：ヒラフ第一駐車場 (Welcome Center)\n人数：1名 (旅行者 A)\n支払済：6,000円\n接續航班：ANA 51便`
+                        },
+                        {
+                            type: 'flight',
+                            tag: '朋友x3',
+                            time: '13:00 - 14:35',
+                            title: '東京羽田 (T2) ➔ 札幌新千歲',
+                            desc: '另外三位的航班。',
+                            bookingId: 'Flight_Friends_Info',
+                            details: `【⏰ 建議時間點】：\n**11:00** 飯店大廳集合退房/出發。\n\n【交通攻略 (前往羽田 T2 國內線)】：\n1. **飯店接駁車**：早上時段飯店可能有免費接駁巴士 (請前一晚確認班次)。\n2. **電車 (最穩)**：步行至「穴守稲荷站」。\n   - 路線：**京急空港線** (往羽田機場)。\n   - 車程：約 5 分鐘。\n3. **下車**：**羽田空港第1・第2ターミナル站**。\n   - 務必確認是去 **第2航廈 (ANA)**！(不要跑去 JAL 的第1航廈)。\n\n📌 抵達機場後約 11:30，有充裕時間吃午餐或買伴手禮。`
+                        },
+                        {
+                            type: 'bus',
+                            tag: '朋友x3',
+                            time: '15:50 - 18:45',
+                            price: '¥6,000 /人',
+                            title: 'Hokkaido Resort Liner (便名 109)',
+                            address: '新千歲空港 国内線ターミナル',
+                            desc: '新千歲機場 ➔ Hirafu Welcome Center',
+                            bookingId: 'SAMPLE-003',
+                            details: `予約番号：SAMPLE-003\n利用日：2026/02/07\n区間：新千歳空港 (15:50発) ⇒ ニセコ (18:45着)\n便名：109便\n乗車場所：国内線ターミナル\n降車場所：ヒラフ第一駐車場 (Welcome Center)\n人数：3名 (旅行者 B, 旅行者 C, 旅行者 D)\n合計金額：18,000円\n接續航班：ANA 065`
+                        },
+                        {
+                            type: 'hotel',
+                            time: 'Check-in: 15:00',
+                            price: '總額 ¥272,800 (每人 ¥68,200)',
+                            title: 'Niseko Park Hotel',
+                            jpName: 'ニセコパークホテル',
+                            address: 'ニセコパークホテル',
+                            phone: '0XX-XXXX-XXXX',
+                            bookingId: 'SAMPLE-004',
+                            details: `予約番号：SAMPLE-004\n宿泊日：2026/02/07 - 2026/02/11 (4泊)\nプラン：【羊蹄館泊◇３名様以上】連泊プラン（朝食付）\n部屋：羊蹄館和室（バス・トイレ付）\n人数：4名\n合計金額：272,800円 (支払済)`
+                        },
+                        {
+                            type: 'snow',
+                            time: '16:00',
+                            title: '雪具租借 (Niseko Sports)',
+                            address: 'Niseko Sports Hirafu Zaka',
+                            desc: '前往 Hirafu Zaka 店取件 (單板+雪鞋)',
+                            link: 'https://hanazononiseko.com/ja/winter/rental-and-retail/rental-niseko-sports',
+                            bookingId: 'Rental_Info',
+                            details: `店家：Niseko Sports Hirafu Zaka Store (ひらふ坂店)\n建議方案：Adult Sports Range (Snowboard & Boots)\n預估費用：¥20,000 (3天)\n備註：建議加租安全帽。店內可免費寄放裝備。`
+                        }
+                    ]
+                },
+                {
+                    id: 'day3',
+                    date: '2/8 (日) - 2/10 (二)',
+                    title: '二世谷滑雪 (全日)',
+                    events: [
+                        {
+                            type: 'snow',
+                            time: '全日',
+                            title: 'Niseko United 滑雪',
+                            address: 'Niseko Tokyu Grand HIRAFU',
+                            desc: '享受粉雪。滑雪結束後裝備可寄放在 Niseko Sports。',
+                            bookingId: null
+                        },
+                        {
+                            type: 'hotel',
+                            time: '續住',
+                            title: 'Niseko Park Hotel',
+                            bookingId: 'SAMPLE-004',
+                            desc: '含早餐'
+                        }
+                    ]
+                },
+                {
+                    id: 'day6',
+                    date: '2/11 (三)',
+                    title: '移動日：二世谷 ➔ 札幌 (雪祭)',
+                    events: [
+                        {
+                            type: 'bus',
+                            tag: '全員',
+                            time: '07:50 - 10:20',
+                            price: '¥5,250 /人',
+                            title: 'Ski bus "WHITE LINER" (#1202)',
+                            address: 'Hirafu Welcome Center',
+                            desc: '二世谷 ➔ 新千歲機場 (需轉乘 JR)。',
+                            bookingId: 'White_Liner_Booking',
+                            details: `Bus Number: #1202\n出發：07:50 Hirafu Welcome Center\n抵達：10:20 New Chitose Airport Domestic Terminal\n人數：4名\n合計金額：21,000 Yen (每人 5,250 Yen)\n備註：抵達機場後，請轉乘 JR 快速 Airport 前往札幌。`
+                        },
+                        {
+                            type: 'train',
+                            tag: '全員',
+                            time: '10:45 - 11:30',
+                            title: 'JR 快速 Airport (新千歲 ➔ 札幌)',
+                            desc: '移動至札幌。可將行李寄放於車站或飯店櫃台。',
+                            bookingId: null,
+                            details: `【交通轉乘】：\n1. 巴士抵達機場 (10:20)。\n2. 步行至 B1F JR 新千歲機場站。\n3. 搭乘快速 Airport (約 15 分鐘一班) 前往札幌站。\n4. 抵達札幌後，先去飯店 (APA 札幌大通) 寄放行李。`
+                        },
+                        {
+                            type: 'hotel',
+                            time: '12:00 (先寄放行李)',
+                            price: '¥52,000 (總價)',
+                            title: 'APA Hotel〈札幌大通駅前南〉',
+                            jpName: 'アパホテル〈札幌大通駅前南〉',
+                            address: '〒060-0062 北海道札幌市中央区南2条西5丁目26-5',
+                            phone: '0XX-XXXX-XXXX',
+                            bookingId: 'SAMPLE-005',
+                            details: `予約番号：SAMPLE-005\n宿泊日：2026/02/11 - 2026/02/12 (1泊)\n部屋数：2間 (人數：2名)\n合計金額：52,000円\n交通：地下鐵「大通站」**3號出口** 步行5分鐘 (3號出口有電扶梯)。\n備註：15:00 後可辦理正式入住。`
+                        },
+                        {
+                            type: 'snow',
+                            tag: '全員',
+                            time: '13:00 - 17:00',
+                            title: '第76回 札幌雪祭 (Sapporo Snow Festival)',
+                            address: '大通公園',
+                            desc: '行李安置後，前往大通公園會場逛逛 (白天的雪像)。',
+                            link: 'https://www.snowfes.com/',
+                            bookingId: null
+                        },
+
+                        {
+                            type: 'shopping',
+                            time: '22:30',
+                            title: 'Parfaiteria Pal (夜聖代)',
+                            desc: '全員集合吃宵夜。地址：南4条西2丁目 (薄野)。',
+                            address: '〒064-0804 北海道札幌市中央区南４条西２丁目１０−１',
+                            bookingId: null
+                        },
+
+                    ]
+                },
+                {
+                    id: 'day7',
+                    date: '2/12 (四)',
+                    title: '分道揚鑣：返台 vs 東京',
+                    events: [
+                        {
+                            type: 'flight',
+                            tag: '朋友x2',
+                            time: '07:30 - 09:10',
+                            title: 'CTS 札幌新千歲 ➔ 東京羽田',
+                            address: '羽田空港 第1ターミナル',
+                            priority: true,
+                            desc: '轉機前往松山 (JR首班: 05:55 札幌發 ➔ 06:28 抵機場)。',
+                            details: `【往機場交通建議】：\n1. 航班 07:30 起飛，建議 **06:30** 前抵達櫃台。\n2. **JR 首班車** 為 05:55 發車 (06:28 抵達)。\n   - 這已是 JR 最早班次！\n   - 距離起飛約 1 小時，時間足夠但請勿遲到。\n   - 務必預約 u-seat。\n3. 若需更早只能搭計程車 (約 ¥15,000 以上)。`,
+                            bookingId: null
+                        },
+                        {
+                            type: 'bus',
+                            tag: '羅羅',
+                            time: '08:50 - 11:20',
+                            price: '¥6,000',
+                            title: '巴士：Sapporo ➔ Furano (#821)',
+                            address: 'Sapporo Prince Hotel',
+                            desc: '前往富良野 (Kita-no-mine Gondola)。',
+                            bookingId: 'Bus_821',
+                            details: `Course Name: 【# 821】 Sapporo >> Furano\n日期：2026/02/12\n上車地點：08:50 Sapporo Prince Hotel\n下車地點：11:20 Kita-no-mine Gondola\n費用：Adults 6,000 YEN\n代表人：SAMPLE NAME`
+                        },
+                        {
+                            type: 'flight',
+                            tag: '朋友x2',
+                            time: '12:40 - 15:50',
+                            title: 'HND 東京羽田 ➔ 台北松山 (T1)',
+                            address: '台北松山機場',
+                            desc: '旅程結束，平安返家。',
+                            bookingId: null
+                        },
+                        {
+                            type: 'flight',
+                            tag: '我',
+                            time: '16:30 - 18:15',
+                            title: 'NH070 札幌新千歲 ➔ 東京羽田 (T2)',
+                            address: '羽田空港 第2ターミナル',
+                            priority: true,
+                            desc: '推薦: 14:44 札幌發 ➔ 15:24 抵機場。',
+                            details: `【往機場交通建議】：\n1. 航班 16:30 起飛，建議 **15:30** 前抵達櫃台。\n2. **強烈推薦** 搭乘以下班次 (務必預約 u-seat)：\n   - 14:44 札幌發 ➔ 15:24 抵達機場\n   - (備案) 15:00 札幌發 ➔ 15:40 抵達機場\n3. 🌟 下午時段人潮眾多，請務必 **現在就去買 u-seat**。\n4. 回到東京後將前往新宿。`,
+                            bookingId: null
+                        },
+                        {
+                            type: 'hotel',
+                            time: 'Check-in: 15:00',
+                            price: '¥12,100 (總價)',
+                            title: 'APA Hotel〈東新宿駅前〉',
+                            jpName: 'アパホテル〈東新宿駅前〉',
+                            address: '〒160-0021 東京都新宿区歌舞伎町2-3-24',
+                            phone: '0XX-XXXX-XXXX',
+                            bookingId: 'SAMPLE-006',
+                            details: `予約番号：SAMPLE-006\n宿泊日：2026/02/12 - 2026/02/13 (1泊)\n部屋数：1部屋 (人数：1名)\n合計金額：12,100円\n交通：大江戸線/副都心線「東新宿駅」B2出口すぐ。\n備註：明日需移動至下一個飯店與家人會合。`
+                        }
+                    ]
+                }
+            ];
+
+            // 輔助函式：根據類型回傳圖示
+            const getTypeIcon = (type) => {
+                switch (type) {
+                    case 'flight': return <IconPlane className="text-blue-500" />;
+                    case 'train': return <IconTrain className="text-green-600" />;
+                    case 'bus': return <IconBus className="text-orange-500" />;
+                    case 'hotel': return <IconHotel className="text-purple-600" />;
+                    case 'snow': return <IconSnow className="text-cyan-500" />;
+                    case 'shopping': return <IconShopping className="text-pink-500" />;
+                    default: return <IconInfo className="text-gray-500" />;
+                }
+            };
+
+            // 簡單的 Markdown 解析器：將 **文字** 轉為 <strong>文字</strong>
+            const parseMarkdown = (text) => {
+                if (!text) return null;
+                // 使用正則表達式分割：捕捉 **...**
+                const parts = text.split(/(\*\*[^\*]+\*\*)/g);
+                return parts.map((part, index) => {
+                    if (part.startsWith('**') && part.endsWith('**')) {
+                        return <strong key={index} className="text-slate-900 font-extrabold bg-yellow-100/50 px-0.5 rounded">{part.slice(2, -2)}</strong>;
+                    }
+                    return part;
+                });
+            };
+
+            return (
+                <div className="flex flex-col min-h-screen max-w-md mx-auto shadow-2xl bg-white border-x border-gray-200">
+                    {/* Header */}
+                    <div className="bg-gradient-to-r from-cyan-600 to-blue-600 text-white p-5 sticky top-0 z-20 shadow-lg">
+                        <div className="flex justify-between items-center">
+                            <div>
+                                <h1 className="text-xl font-bold flex items-center gap-2">
+                                    <IconSnow className="w-6 h-6" />
+                                    滑雪之旅
+                                </h1>
+                                <p className="text-cyan-100 text-sm mt-1">2026/2/5 - 2/12</p>
+                            </div>
+                            <div className="text-2xl font-bold bg-white/20 px-3 py-1 rounded-lg">
+                                ❄️
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Coupon Button Section */}
+                    <div className="bg-white p-3 border-b border-gray-100 space-y-2">
+                        <button
+                            onClick={() => alert('請在此填入您的共享相簿連結 (如 Google Drive / iCloud)')}
+                            className="flex items-center justify-center gap-2 w-full py-3 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold rounded-xl shadow-md hover:shadow-lg active:scale-[0.98] transition-all cursor-pointer"
+                        >
+                            <span className="text-xl">📸</span>
+                            <span>上傳照片/影片到共享相簿</span>
+                        </button>
+                        <a
+                            href="https://billboard.chictrip.com.tw/service/Coupon?countryid=7"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-2 w-full py-3 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold rounded-xl shadow-md hover:shadow-lg active:scale-[0.98] transition-all"
+                        >
+                            <IconCoupon className="w-5 h-5" />
+                            <span>索取日本優惠券 (Bic Camera/藥妝等)</span>
+                        </a>
+                        <a
+                            href="costs.html"
+                            className="flex items-center justify-center gap-2 w-full py-3 bg-gradient-to-r from-violet-500 to-purple-600 text-white font-bold rounded-xl shadow-md hover:shadow-lg active:scale-[0.98] transition-all"
+                        >
+                            <IconUser className="w-5 h-5" />
+                            <span>💰 查看費用分攤明細 (住宿/機票等)</span>
+                        </a>
+                        <a
+                            href="share_costs.html"
+                            className="flex items-center justify-center gap-2 w-full py-3 bg-gradient-to-r from-orange-400 to-amber-500 text-white font-bold rounded-xl shadow-md hover:shadow-lg active:scale-[0.98] transition-all"
+                        >
+                            <IconShopping className="w-5 h-5" />
+                            <span>🍔 餐廳與購物拆帳 (含 Josh 教練)</span>
+                        </a>
+                    </div>
+
+                    {/* Cost Split Reminder */}
+                    <div className="bg-yellow-50 border-b border-yellow-100 p-4">
+                        <h3 className="text-yellow-800 text-xs font-bold uppercase tracking-wider mb-2 flex items-center gap-1">
+                            💰 費用分攤提醒 (請記得轉帳)
+                        </h3>
+                        <div className="space-y-4">
+                            {/* To Shuotao */}
+                            <div className="bg-white/80 p-3 rounded-lg border border-yellow-200 shadow-sm">
+                                <span className="font-bold text-slate-900 text-sm block mb-2 border-b border-yellow-100 pb-1">給 成員A:</span>
+                                <div className="mb-2">
+                                    <p className="font-bold text-slate-800 text-sm mb-1">
+                                        👤 成員B <span className="text-xs font-normal text-slate-500"></span>：
+                                        <span className="text-red-600 text-lg ml-1">¥36,500</span>
+                                    </p>
+                                    <ul className="text-xs text-slate-500 pl-2 border-l-2 border-slate-200 space-y-0.5">
+                                        <li>APA 羽田 (總價 ¥68,000 ÷ 4) = ¥17,000</li>
+                                        <li>APA 札幌 (¥13,000 + 幫成員C出 ¥6,500) = ¥19,500</li>
+                                    </ul>
+                                </div>
+                                <div className="mb-2">
+                                    <p className="font-bold text-slate-800 text-sm mb-1">
+                                        👤 成員D <span className="text-xs font-normal text-slate-500"></span>：
+                                        <span className="text-red-600 text-lg ml-1">¥30,000</span>
+                                    </p>
+                                    <ul className="text-xs text-slate-500 pl-2 border-l-2 border-slate-200 space-y-0.5">
+                                        <li>APA 羽田 (總價 ¥68,000 ÷ 4) = ¥17,000</li>
+                                        <li>APA 札幌 (總價 ¥52,000 ÷ 4) = ¥13,000</li>
+                                    </ul>
+                                </div>
+                                <div className="mb-2">
+                                    <p className="font-bold text-slate-800 text-sm mb-1">
+                                        🐍 成員C <span className="text-xs font-normal text-slate-500"></span>：
+                                        <span className="text-red-600 text-lg ml-1">¥17,000</span>
+                                    </p>
+                                    <ul className="text-xs text-slate-500 pl-2 border-l-2 border-slate-200 space-y-0.5">
+                                        <li>APA 羽田 (總價 ¥68,000 ÷ 4) = ¥17,000</li>
+                                        <li className="text-green-600">💚 APA 札幌免付 (由成員A+成員B幫出)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            {/* To Chia Hsiang */}
+                            <div className="bg-white/80 p-3 rounded-lg border border-yellow-200 shadow-sm">
+                                <span className="font-bold text-slate-900 text-sm block mb-2 border-b border-yellow-100 pb-1">給 成員B:</span>
+
+                                <div className="mb-3">
+                                    <p className="font-bold text-slate-800 text-sm mb-1">
+                                        👤 成員A <span className="text-xs font-normal text-slate-500"></span>：
+                                        <span className="text-red-600 text-lg ml-1">¥73,450</span>
+                                    </p>
+                                    <ul className="text-xs text-slate-500 pl-2 border-l-2 border-slate-200 space-y-0.5">
+                                        <li>二世谷住宿 (總價 ¥272,800 ÷ 4) = ¥68,200</li>
+                                        <li>回程巴士 (總價 ¥21,000 ÷ 4) = ¥5,250</li>
+                                    </ul>
+                                </div>
+
+                                <div className="border-t border-slate-100 pt-2 mb-2">
+                                    <p className="font-bold text-slate-800 text-sm mb-1">
+                                        👤 成員D：
+                                        <span className="text-red-600 text-lg ml-1">¥79,450</span>
+                                    </p>
+                                    <ul className="text-xs text-slate-500 pl-2 border-l-2 border-slate-200 space-y-0.5">
+                                        <li>二世谷住宿 (總價 ¥272,800 ÷ 4) = ¥68,200</li>
+                                        <li>回程巴士 (總價 ¥21,000 ÷ 4) = ¥5,250</li>
+                                        <li>去程巴士 (總價 ¥18,000 ÷ 3) = ¥6,000</li>
+                                    </ul>
+                                </div>
+
+                                <div className="border-t border-slate-100 pt-2">
+                                    <p className="font-bold text-slate-800 text-sm mb-1">
+                                        🐍 成員C：
+                                        <span className="text-red-600 text-lg ml-1">¥79,450</span>
+                                    </p>
+                                    <ul className="text-xs text-slate-500 pl-2 border-l-2 border-slate-200 space-y-0.5">
+                                        <li>二世谷住宿 (總價 ¥272,800 ÷ 4) = ¥68,200</li>
+                                        <li>回程巴士 (總價 ¥21,000 ÷ 4) = ¥5,250</li>
+                                        <li>去程巴士 (總價 ¥18,000 ÷ 3) = ¥6,000</li>
+                                        <li className="text-green-600 font-medium">💚 2/11 札幌住宿免付 (由成員A+成員B幫出)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            {/* Coach Fee */}
+                            <div className="bg-white/80 p-3 rounded-lg border border-yellow-200 shadow-sm">
+                                <span className="font-bold text-slate-900 text-sm block mb-2 border-b border-yellow-100 pb-1">⛷️ 滑雪教練 (3天總計 ¥285,000):</span>
+                                <div className="space-y-2">
+                                    <div className="bg-slate-50 p-2 rounded text-xs space-y-1.5 border border-slate-100">
+                                        <div className="flex justify-between items-center">
+                                            <span className="text-slate-600">成員A <span className="text-[10px] text-slate-400">(20%)</span></span>
+                                            <span className="font-mono font-bold text-slate-800">¥57,000</span>
+                                        </div>
+                                        <div className="flex justify-between items-center">
+                                            <span className="text-slate-600">成員B <span className="text-[10px] text-slate-400">(40%)</span></span>
+                                            <span className="font-mono font-bold text-slate-800">¥114,000</span>
+                                        </div>
+                                        <div className="flex justify-between items-center">
+                                            <span className="text-slate-600">成員C <span className="text-[10px] text-slate-400">(40%)</span></span>
+                                            <span className="font-mono font-bold text-slate-800">¥114,000</span>
+                                        </div>
+                                    </div>
+                                    <p className="text-[10px] text-slate-400 text-right">* 依訓練能力比例分攤</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Pending Tickets Checklist */}
+                    <div className="bg-red-50 border-b border-red-100 p-4">
+                        <h3 className="text-red-800 text-xs font-bold uppercase tracking-wider mb-2 flex items-center gap-1">
+                            <IconAlert className="w-3 h-3" />
+                            重要！待辦購票清單 (建議儘速完成)
+                        </h3>
+                        <div className="space-y-2">
+                            {pendingTickets.map(item => (
+                                <div key={item.id} className="flex items-start gap-2 text-sm text-red-700 bg-white/50 p-2 rounded border border-red-50">
+                                    <span className="mt-1">○</span>
+                                    <span>{item.text}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Timeline */}
+                    <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50">
+                        {
+                            itineraryData.map((day) => (
+                                <div key={day.id} className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden card">
+                                    <div className="px-4 py-3 bg-slate-100 border-b border-slate-200 flex justify-between items-center">
+                                        <div className="flex items-center gap-2">
+                                            <div className="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">
+                                                {day.date.split(' ')[0]}
+                                            </div>
+                                            <h2 className="font-bold text-slate-800">{day.date.split(' ')[1]}</h2>
+                                        </div>
+                                        <span className="text-xs font-medium text-slate-500 truncate max-w-[150px]">{day.title}</span>
+                                    </div>
+
+                                    <div className="divide-y divide-slate-100">
+                                        {day.events.map((event, idx) => (
+                                            <div key={idx} className="p-4 hover:bg-slate-50 transition-colors">
+                                                <div className="flex gap-3">
+                                                    <div className="mt-1 shrink-0">{getTypeIcon(event.type)}</div>
+                                                    <div className="flex-1 min-w-0">
+                                                        <div className="flex justify-between items-start flex-wrap gap-1">
+                                                            <h3 className="font-bold text-slate-900 leading-tight">
+                                                                {event.title}
+                                                                {event.tag && <span className="ml-2 bg-pink-100 text-pink-700 text-[10px] px-1.5 py-0.5 rounded-full align-middle">{event.tag}</span>}
+                                                                {event.price && <span className="ml-2 bg-yellow-100 text-yellow-700 text-[10px] px-1.5 py-0.5 rounded-full align-middle font-mono">{event.price}</span>}
+                                                                {event.priority && <span className="block mt-1 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded w-max font-bold animate-pulse">★ 務必提早預購 (u-seat)</span>}
+                                                            </h3>
+                                                            {event.time && (
+                                                                <span className="text-[10px] font-mono bg-slate-200 px-1.5 py-0.5 rounded text-slate-600 whitespace-nowrap">
+                                                                    {event.time}
+                                                                </span>
+                                                            )}
+                                                        </div>
+
+                                                        {event.jpName && (
+                                                            <p className="text-xs text-slate-500 mt-0.5 font-medium">{event.jpName}</p>
+                                                        )}
+
+                                                        <p className="text-sm text-slate-600 mt-1 leading-relaxed">{event.desc}</p>
+                                                        <div className="flex flex-wrap gap-2 mt-3">
+                                                            {event.bookingId && (
+                                                                <button
+                                                                    onClick={() => setSelectedBooking(event)}
+                                                                    className="inline-flex items-center gap-1 px-3 py-1.5 bg-blue-50 text-blue-600 text-xs font-bold rounded-lg border border-blue-100 hover:bg-blue-100 active:scale-95 transition-all"
+                                                                >
+                                                                    <IconInfo className="w-3.5 h-3.5" />
+                                                                    {event.bookingId.includes('_') ? '詳細資訊' : '訂單'}
+                                                                </button>
+                                                            )}
+
+                                                            {event.link && (
+                                                                <a
+                                                                    href={event.link}
+                                                                    target="_blank"
+                                                                    rel="noopener noreferrer"
+                                                                    className="inline-flex items-center gap-1 px-3 py-1.5 bg-gray-50 text-gray-600 text-xs font-bold rounded-lg border border-gray-200 hover:bg-gray-100 active:scale-95 transition-all"
+                                                                >
+                                                                    <IconExternalLink className="w-3.5 h-3.5" />
+                                                                    連結
+                                                                </a>
+                                                            )}
+
+                                                            {event.pdfLink && (
+                                                                <a
+                                                                    href={event.pdfLink}
+                                                                    target="_blank"
+                                                                    rel="noopener noreferrer"
+                                                                    className="inline-flex items-center gap-1 px-3 py-1.5 bg-red-50 text-red-600 text-xs font-bold rounded-lg border border-red-100 hover:bg-red-100 active:scale-95 transition-all"
+                                                                >
+                                                                    <IconInfo className="w-3.5 h-3.5" />
+                                                                    路線圖 PDF
+                                                                </a>
+                                                            )}
+
+                                                            {event.address && (
+                                                                <a
+                                                                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.address)}`}
+                                                                    target="_blank"
+                                                                    rel="noopener noreferrer"
+                                                                    className="inline-flex items-center gap-1 px-3 py-1.5 bg-green-50 text-green-600 text-xs font-bold rounded-lg border border-green-100 hover:bg-green-100 active:scale-95 transition-all"
+                                                                >
+                                                                    <IconMapPin className="w-3.5 h-3.5" />
+                                                                    地圖
+                                                                </a>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div >
+
+                    {/* Booking Modal */}
+                    {
+                        selectedBooking && (
+                            <div
+                                className="fixed inset-0 bg-black/60 z-50 flex items-end sm:items-center justify-center sm:p-4 backdrop-blur-sm animate-[fadeIn_0.2s_ease-out]"
+                                onClick={() => setSelectedBooking(null)}
+                            >
+                                <div
+                                    className="bg-white w-full max-w-md h-[80vh] sm:h-auto sm:rounded-2xl rounded-t-2xl shadow-2xl flex flex-col animate-[slideUp_0.3s_ease-out]"
+                                    onClick={e => e.stopPropagation()}
+                                >
+                                    <div className="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50 rounded-t-2xl">
+                                        <h3 className="font-bold text-slate-800 flex items-center gap-2">
+                                            <IconInfo className="text-blue-600 w-5 h-5" />
+                                            詳細資訊
+                                        </h3>
+                                        <button
+                                            onClick={() => setSelectedBooking(null)}
+                                            className="p-2 hover:bg-slate-200 rounded-full transition-colors text-slate-500"
+                                        >
+                                            <IconX className="w-5 h-5" />
+                                        </button>
+                                    </div>
+
+                                    <div className="p-6 overflow-y-auto">
+                                        <div className="space-y-5">
+                                            <div>
+                                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">項目</label>
+                                                <p className="text-lg font-bold text-slate-900 leading-tight">{selectedBooking.title}</p>
+                                                {selectedBooking.jpName && <p className="text-sm text-slate-500 mt-1">{selectedBooking.jpName}</p>}
+                                            </div>
+
+                                            {selectedBooking.bookingId && !selectedBooking.bookingId.includes('_') && (
+                                                <div className="bg-blue-50 p-4 rounded-xl border border-blue-100">
+                                                    <label className="text-[10px] font-bold text-blue-400 uppercase tracking-wider block mb-1">預約編號</label>
+                                                    <p className="text-2xl font-mono font-bold text-blue-700 select-all">{selectedBooking.bookingId}</p>
+                                                </div>
+                                            )}
+
+                                            {selectedBooking.details && (
+                                                <div>
+                                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">詳細內容</label>
+                                                    <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 text-sm font-mono text-slate-700 whitespace-pre-line leading-relaxed">
+                                                        {parseMarkdown(selectedBooking.details)}
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {selectedBooking.address && (
+                                                <div>
+                                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">地址與電話</label>
+                                                    <div className="space-y-3">
+                                                        <a
+                                                            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedBooking.address)}`}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="flex items-start gap-3 p-3 bg-slate-50 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-colors group"
+                                                        >
+                                                            <IconMapPin className="mt-0.5 text-slate-400 group-hover:text-blue-500 w-5 h-5 shrink-0" />
+                                                            <span className="text-sm font-medium leading-snug">{selectedBooking.address}</span>
+                                                        </a>
+                                                        {selectedBooking.phone && (
+                                                            <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                                                                <IconClock className="text-slate-400 w-5 h-5 shrink-0" />
+                                                                <span className="text-sm font-medium select-all">{selectedBooking.phone}</span>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    <div className="p-4 border-t border-slate-100 bg-slate-50 rounded-b-2xl">
+                                        <button
+                                            onClick={() => setSelectedBooking(null)}
+                                            className="w-full py-3 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 active:scale-[0.98] transition-all"
+                                        >
+                                            關閉
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    }
+                </div >
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<SkiTripApp />);
+    </script>
+</body>
+
+</html>

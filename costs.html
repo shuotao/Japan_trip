@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>費用分攤明細 | 北海道滑雪之旅</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- React & ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+        }
+
+        .card {
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        // Icons
+        const IconArrowLeft = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m12 19-7-7 7-7" /><path d="M19 12H5" /></svg>
+        );
+        const IconUser = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+        );
+        const IconWallet = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" /><path d="M3 5v14a2 2 0 0 0 2 2h16v-5" /><path d="M18 12a2 2 0 0 0 0 4h4v-4Z" /></svg>
+        );
+        const IconCheck = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M20 6 9 17l-5-5" /></svg>
+        );
+        const IconMinus = ({ className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M5 12h14" /></svg>
+        );
+
+        const CostsApp = () => {
+            const [selectedPerson, setSelectedPerson] = useState(null);
+
+            // 成員費用數據
+            const membersData = [
+                {
+                    id: 'tao',
+                    name: '成員A',
+                    emoji: '🐋',
+                    color: 'from-blue-500 to-cyan-500',
+                    bgColor: 'bg-blue-50',
+                    borderColor: 'border-blue-200',
+                    income: [
+                        { desc: '成員B還 APA 羽田+札幌 (含幫成員C出)', amount: 36500 },
+                        { desc: '成員D還 APA 羽田+札幌', amount: 30000 },
+                        { desc: '成員C還 APA 羽田 (札幌免付)', amount: 17000 },
+                    ],
+                    expense: [
+                        { desc: '付給成員B (二世谷住宿)', amount: 68200 },
+                        { desc: '付給成員B (回程巴士)', amount: 5250 },
+                        { desc: '去程巴士 (自己的班次)', amount: 6000 },
+                        { desc: '滑雪教練 (20%)', amount: 57000 },
+                        { desc: '幫成員C出札幌住宿部分', amount: 6500 },
+                    ],
+                    misc: 25000,
+                    note: '因為墊付 APA 住宿，會收到其他人轉帳，所以實際需準備現金較少。札幌住宿幫成員C出 ¥6,500。'
+                },
+                {
+                    id: 'sho',
+                    name: '成員B',
+                    emoji: '🎿',
+                    color: 'from-green-500 to-emerald-500',
+                    bgColor: 'bg-green-50',
+                    borderColor: 'border-green-200',
+                    income: [
+                        { desc: '成員A還 二世谷+回程巴士', amount: 73450 },
+                        { desc: '成員D還 二世谷+巴士全額', amount: 79450 },
+                        { desc: '成員C還 二世谷+巴士全額', amount: 79450 },
+                    ],
+                    expense: [
+                        { desc: '付給成員A (APA 羽田+札幌含幫成員C出)', amount: 36500 },
+                        { desc: '滑雪教練 (40%)', amount: 114000 },
+                    ],
+                    misc: 25000,
+                    hasExcess: true,
+                    note: '🎉 已墊付二世谷住宿和巴士，收到還款後扣除自己應付項目，會有盈餘！札幌住宿幫成員C出 ¥6,500。'
+                },
+                {
+                    id: 'totoro',
+                    name: '成員C',
+                    emoji: '🐍',
+                    color: 'from-purple-500 to-pink-500',
+                    bgColor: 'bg-purple-50',
+                    borderColor: 'border-purple-200',
+                    income: [],
+                    expense: [
+                        { desc: '付給成員A (APA 羽田)', amount: 17000 },
+                        { desc: '付給成員B (二世谷住宿)', amount: 68200 },
+                        { desc: '付給成員B (回程巴士)', amount: 5250 },
+                        { desc: '付給成員B (去程巴士)', amount: 6000 },
+                        { desc: '滑雪教練 (40%)', amount: 114000 },
+                        { desc: '雪具租借 (約3天)', amount: 20000 },
+                    ],
+                    misc: 20000,
+                    note: '第一次滑雪需租雪具，加上教練費佔比較高。💚 札幌住宿由成員A和成員B幫出！'
+                },
+                {
+                    id: 'lolo',
+                    name: '成員D',
+                    emoji: '🧸',
+                    color: 'from-orange-500 to-amber-500',
+                    bgColor: 'bg-orange-50',
+                    borderColor: 'border-orange-200',
+                    income: [],
+                    expense: [
+                        { desc: '付給成員A (APA 羽田+札幌)', amount: 30000 },
+                        { desc: '付給成員B (二世谷住宿)', amount: 68200 },
+                        { desc: '付給成員B (回程巴士)', amount: 5250 },
+                        { desc: '付給成員B (去程巴士)', amount: 6000 },
+                    ],
+                    misc: 20000,
+                    note: '提供給不參加滑雪教練課程的成員參考，費用相對較低。'
+                }
+            ];
+
+            // 計算函式
+            const calcTotal = (items) => items.reduce((sum, item) => sum + item.amount, 0);
+            const formatYen = (amount) => `¥${amount.toLocaleString()}`;
+            const formatTWD = (yen) => `NT$${Math.round(yen * 0.2).toLocaleString()}`;
+
+            const PersonCard = ({ person }) => {
+                const totalIncome = calcTotal(person.income);
+                const totalExpense = calcTotal(person.expense);
+                const netAmount = totalExpense - totalIncome + person.misc;
+
+                return (
+                    <div
+                        className={`card bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer border-2 ${selectedPerson === person.id ? person.borderColor : 'border-transparent'}`}
+                        onClick={() => setSelectedPerson(selectedPerson === person.id ? null : person.id)}
+                    >
+                        {/* Header */}
+                        <div className={`bg-gradient-to-r ${person.color} p-4 text-white`}>
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                    <span className="text-3xl">{person.emoji}</span>
+                                    <div>
+                                        <h2 className="font-bold text-lg">{person.name}</h2>
+                                        <p className="text-white/80 text-sm">點擊查看明細</p>
+                                    </div>
+                                </div>
+                                <div className="text-right">
+                                    <p className="text-white/70 text-xs">建議準備</p>
+                                    <p className="font-bold text-xl">{formatYen(netAmount)}</p>
+                                    <p className="text-white/80 text-sm">{formatTWD(netAmount)}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* 展開的明細 */}
+                        {selectedPerson === person.id && (
+                            <div className={`p-4 ${person.bgColor} animate-fade-in`}>
+                                {/* 收入 */}
+                                {person.income.length > 0 && (
+                                    <div className="mb-4">
+                                        <h3 className="text-xs font-bold text-green-700 uppercase tracking-wider mb-2 flex items-center gap-1">
+                                            <IconCheck className="w-4 h-4" /> 會收到的款項
+                                        </h3>
+                                        <div className="bg-white rounded-xl p-3 space-y-2 border border-green-100">
+                                            {person.income.map((item, idx) => (
+                                                <div key={idx} className="flex justify-between items-center text-sm">
+                                                    <span className="text-slate-600">{item.desc}</span>
+                                                    <span className="font-mono font-bold text-green-600">+{formatYen(item.amount)}</span>
+                                                </div>
+                                            ))}
+                                            <div className="border-t border-green-100 pt-2 flex justify-between items-center">
+                                                <span className="font-bold text-green-700">收入小計</span>
+                                                <span className="font-mono font-bold text-green-700 text-lg">+{formatYen(totalIncome)}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* 支出 */}
+                                <div className="mb-4">
+                                    <h3 className="text-xs font-bold text-red-700 uppercase tracking-wider mb-2 flex items-center gap-1">
+                                        <IconMinus className="w-4 h-4" /> 需支付的費用
+                                    </h3>
+                                    <div className="bg-white rounded-xl p-3 space-y-2 border border-red-100">
+                                        {person.expense.map((item, idx) => (
+                                            <div key={idx} className="flex justify-between items-center text-sm">
+                                                <span className="text-slate-600">{item.desc}</span>
+                                                <span className="font-mono font-bold text-red-600">-{formatYen(item.amount)}</span>
+                                            </div>
+                                        ))}
+                                        <div className="border-t border-red-100 pt-2 flex justify-between items-center">
+                                            <span className="font-bold text-red-700">支出小計</span>
+                                            <span className="font-mono font-bold text-red-700 text-lg">-{formatYen(totalExpense)}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* 雜費與淨額 */}
+                                <div className="bg-white rounded-xl p-3 border border-slate-200">
+                                    <div className="flex justify-between items-center text-sm mb-2">
+                                        <span className="text-slate-600">餐飲/交通/購物等預估</span>
+                                        <span className="font-mono text-slate-600">~{formatYen(person.misc)}</span>
+                                    </div>
+                                    <div className="border-t border-slate-200 pt-2">
+                                        <div className="flex justify-between items-center">
+                                            <span className="font-bold text-slate-800">淨額計算</span>
+                                            <span className="font-mono text-slate-500 text-xs">
+                                                {formatYen(totalExpense)} - {formatYen(totalIncome)} + {formatYen(person.misc)}
+                                            </span>
+                                        </div>
+                                        <div className="flex justify-between items-center mt-1">
+                                            <span className="font-bold text-lg text-slate-900">💰 建議準備</span>
+                                            <div className="text-right">
+                                                <span className="font-mono font-bold text-xl text-blue-600 block">{formatYen(netAmount)}</span>
+                                                <span className="font-mono text-sm text-slate-500">{formatTWD(netAmount)}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* 備註 */}
+                                <div className="mt-3 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                                    <p className="text-xs text-yellow-800">💡 {person.note}</p>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                );
+            };
+
+            return (
+                <div className="flex flex-col min-h-screen max-w-md mx-auto">
+                    {/* Header */}
+                    <div className="bg-white/10 backdrop-blur-md text-white p-4 sticky top-0 z-20">
+                        <div className="flex items-center gap-3">
+                            <a
+                                href="index.html"
+                                className="p-2 hover:bg-white/20 rounded-full transition-colors"
+                            >
+                                <IconArrowLeft className="w-5 h-5" />
+                            </a>
+                            <div>
+                                <h1 className="text-xl font-bold flex items-center gap-2">
+                                    <IconWallet className="w-6 h-6" />
+                                    費用分攤明細
+                                </h1>
+                                <p className="text-white/80 text-sm">點擊卡片查看個人明細</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Summary Banner */}
+                    <div className="bg-white/20 backdrop-blur-sm mx-4 mt-4 p-4 rounded-xl text-white">
+                        <h2 className="font-bold mb-2">💡 費用計算說明</h2>
+                        <ul className="text-sm text-white/90 space-y-1">
+                            <li>• 已扣除互相墊付後的對帳金額</li>
+                            <li>• 匯率以 1 日幣 = 0.2 台幣計算</li>
+                            <li>• 滑雪教練費依訓練比例分攤 (成員A 20%, 成員B 40%, 成員C 40%)</li>
+                        </ul>
+                    </div>
+
+                    {/* Cards */}
+                    <div className="flex-1 p-4 space-y-4">
+                        {membersData.map(person => (
+                            <PersonCard key={person.id} person={person} />
+                        ))}
+                    </div>
+
+                    {/* Footer Summary */}
+                    <div className="bg-white/10 backdrop-blur-md p-4 text-white">
+                        <h3 className="font-bold mb-2 text-center">📊 總覽比較</h3>
+                        <div className="grid grid-cols-4 gap-2 text-center text-xs">
+                            {membersData.map(person => {
+                                const net = calcTotal(person.expense) - calcTotal(person.income) + person.misc;
+                                return (
+                                    <div key={person.id} className="bg-white/10 rounded-lg p-2">
+                                        <span className="text-lg block">{person.emoji}</span>
+                                        <span className="font-bold block">{formatYen(net)}</span>
+                                        <span className="text-white/70 text-[10px]">{formatTWD(net)}</span>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+
+                    {/* Share Costs Button */}
+                    <div className="px-4 pb-2">
+                        <a
+                            href="share_costs.html"
+                            className="flex items-center justify-center gap-2 w-full py-3 bg-gradient-to-r from-orange-400 to-amber-500 text-white font-bold rounded-xl shadow-lg hover:shadow-xl active:scale-[0.98] transition-all text-sm"
+                        >
+                            <span>🍔 前往「餐廳與購物拆帳」(含 Josh)</span>
+                        </a>
+                    </div>
+
+                    {/* Back Button */}
+                    <div className="p-4 bg-white/5">
+                        <a
+                            href="index.html"
+                            className="flex items-center justify-center gap-2 w-full py-3 bg-white text-purple-700 font-bold rounded-xl shadow-lg hover:shadow-xl active:scale-[0.98] transition-all"
+                        >
+                            <IconArrowLeft className="w-5 h-5" />
+                            返回行程頁面
+                        </a>
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<CostsApp />);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+# === 隱私保護：以下檔案不應出現在公開倉庫 ===
+
+# LINE 聊天紀錄
+[LINE]*
+
+# 個人行程手冊
+total.md
+
+# PDF 文件 (可能含 metadata)
+*.pdf
+
+# 個人筆記
+abc.md
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
